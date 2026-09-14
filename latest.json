@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
-  "url": "https://github.com/Domiki/SySHIP/releases/latest",
-  "notes": ""
+  "version": "0.1.1",
+  "url": "https://github.com/Domiki/SySHIP/releases/tag/v0.1.1",
+  "notes": "Add a modal to alert users of new version updates\r\nRelease for DIMENSION / COMPART modules"
 }
