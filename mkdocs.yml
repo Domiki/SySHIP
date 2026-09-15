@@ -26,6 +26,14 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences
+
 plugins:
   - search
   - i18n:
@@ -38,27 +46,55 @@ plugins:
         - locale: ko
           name: 한국어
           build: true
-      nav_translations:
-        ko:
-          Home: 홈
-          Installation: 설치
-          DIMENSION: DIMENSION
-          HULL: HULL
-          Import: 임포트
-          Fairing: 페어링
-          Variation: 배리에이션
-          Export: 내보내기
-          COMPART: COMPART
-          FAQ: 자주 묻는 질문
+          nav_translations:
+            Home: 홈
+            Installation: 설치
+            DIMENSION: DIMENSION
+            Overview: 개요
+            Requirements: 요구사항
+            Principal Dimensions: 주요 제원
+            Freeboard: 건현
+            Resistance & Propeller: 저항 및 추진기
+            Engine Selection: 엔진 선정
+            Optimize: 최적화
+            HULL: HULL
+            Import: 임포트
+            Fairing: 페어링
+            Variation: 배리에이션
+            Export: 내보내기
+            COMPART: COMPART
+            Modeling: 모델링
+            Hydro: 정수력학
+            Volume: 용적
+            Loading: 적하
+            Damage: 손상
+            Stability: 복원성
+            FAQ: 자주 묻는 질문
 
 nav:
   - Home: index.md
   - Installation: installation.md
-  - DIMENSION: dimension/index.md
+  - DIMENSION:
+      - Overview: dimension/index.md
+      - Requirements: dimension/requirements.md
+      - Principal Dimensions: dimension/principal-dimensions.md
+      - Freeboard: dimension/freeboard.md
+      - Resistance & Propeller: dimension/resistance-propeller.md
+      - Engine Selection: dimension/engine-selection.md
+      - Optimize: dimension/optimize.md
   - HULL:
       - Import: hull/import.md
       - Fairing: hull/fairing.md
       - Variation: hull/variation.md
       - Export: hull/export.md
-  - COMPART: compart/index.md
+  - COMPART:
+      - Overview: compart/index.md
+      - Import: compart/import.md
+      - Modeling: compart/modeling.md
+      - Hydro: compart/hydro.md
+      - Volume: compart/volume.md
+      - Loading: compart/loading.md
+      - Damage: compart/damage.md
+      - Stability: compart/stability.md
+      - Export: compart/export.md
   - FAQ: faq.md

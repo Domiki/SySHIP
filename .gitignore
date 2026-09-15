@@ -2,3 +2,5 @@
 *.dmg
 *.zip
 *.AppImage
+.docs_venv/
+site/
