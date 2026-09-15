@@ -21,6 +21,31 @@ theme:
     - navigation.sections
     - content.code.copy
 
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: ko
+          name: 한국어
+          build: true
+      nav_translations:
+        ko:
+          Home: 홈
+          Getting Started: 시작하기
+          Installation: 설치
+          Importing a Hull: 선체 임포트
+          Hull: 선체
+          Fairing: 페어링
+          Variation: 배리에이션
+          Export: 내보내기
+          Compartment: 구획
+          FAQ: 자주 묻는 질문
+
 nav:
   - Home: index.md
   - Getting Started:
