@@ -21,3 +21,18 @@ If the app is restored but still won't launch (or you see "The system cannot exe
 After both steps, relaunch SySHIP.
 
 We're working on getting the app properly code-signed, which will resolve this permanently.
+
+## "SySHIP.app is damaged and can't be opened" or it won't launch (macOS)
+
+Since the app isn't notarized by Apple yet, macOS Gatekeeper quarantines it after you download and install it. You need to grant it permission to run manually:
+
+1. Install SySHIP from the `.dmg` file (drag it into **Applications**).
+2. Open **Terminal**.
+3. Run:
+   ```
+   sudo xattr -rd com.apple.quarantine /Applications/SySHIP.app
+   ```
+4. Enter your Mac's login password when prompted (nothing will appear as you type — that's normal).
+5. Open SySHIP normally.
+
+This removes the quarantine flag macOS attaches to apps downloaded from outside the App Store. You only need to do this once per install.

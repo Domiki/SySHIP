@@ -21,3 +21,18 @@
 두 단계를 모두 마친 뒤 SySHIP을 다시 실행해보세요.
 
 이 문제는 저희가 앱에 정식 코드 서명을 적용하면 근본적으로 해결될 예정입니다.
+
+## "SySHIP.app이 손상되어 열 수 없습니다" 또는 프로그램이 실행되지 않아요 (macOS)
+
+아직 Apple 공증(notarization)을 받지 않은 상태라, 다운로드해서 설치하면 macOS Gatekeeper가 실행 권한을 막아둡니다. 아래처럼 직접 권한을 부여해야 합니다.
+
+1. `.dmg` 파일로 SySHIP을 설치합니다 (**Applications** 폴더로 드래그).
+2. **터미널(Terminal)**을 엽니다.
+3. 아래 명령어를 입력합니다.
+   ```
+   sudo xattr -rd com.apple.quarantine /Applications/SySHIP.app
+   ```
+4. 비밀번호 입력을 요구하면 **자신의 컴퓨터 로그인 비밀번호**를 입력합니다 (입력해도 화면에 아무 표시가 안 뜨는 게 정상입니다).
+5. SySHIP을 평소처럼 실행합니다.
+
+이 명령어는 App Store 외부에서 받은 앱에 macOS가 붙이는 격리(quarantine) 표시를 제거하는 것으로, 설치당 한 번만 해주면 됩니다.
