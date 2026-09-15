@@ -8,5 +8,5 @@ SySHIP은 선체 설계, 페어링, 배리에이션, 구획 배치를 위한 데
 
 ## 시작하기
 
-- [설치](getting-started/installation.md)
-- [선체 임포트](getting-started/importing-a-hull.md)
+- [설치](installation.md)
+- [선체 임포트](hull/import.md)

@@ -8,5 +8,5 @@ Get the latest installer from the [Releases](https://github.com/Domiki/SySHIP/re
 
 ## Where to start
 
-- [Installation](getting-started/installation.md)
-- [Importing a Hull](getting-started/importing-a-hull.md)
+- [Installation](installation.md)
+- [Importing a Hull](hull/import.md)
