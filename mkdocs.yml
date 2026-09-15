@@ -5,14 +5,16 @@ repo_name: Domiki/SySHIP
 
 theme:
   name: material
+  logo: assets/icon.png
+  favicon: assets/icon.png
   palette:
     - scheme: default
-      primary: indigo
+      primary: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
+      primary: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -20,6 +22,9 @@ theme:
     - navigation.tabs
     - navigation.sections
     - content.code.copy
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search
@@ -36,24 +41,24 @@ plugins:
       nav_translations:
         ko:
           Home: 홈
-          Getting Started: 시작하기
           Installation: 설치
-          Importing a Hull: 선체 임포트
-          Hull: 선체
+          DIMENSION: DIMENSION
+          HULL: HULL
+          Import: 임포트
           Fairing: 페어링
           Variation: 배리에이션
           Export: 내보내기
-          Compartment: 구획
+          COMPART: COMPART
           FAQ: 자주 묻는 질문
 
 nav:
   - Home: index.md
-  - Getting Started:
-      - Installation: getting-started/installation.md
-      - Importing a Hull: getting-started/importing-a-hull.md
-  - Hull:
+  - Installation: installation.md
+  - DIMENSION: dimension/index.md
+  - HULL:
+      - Import: hull/import.md
       - Fairing: hull/fairing.md
       - Variation: hull/variation.md
       - Export: hull/export.md
-  - Compartment: compart/index.md
+  - COMPART: compart/index.md
   - FAQ: faq.md
