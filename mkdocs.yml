@@ -1,0 +1,34 @@
+site_name: SySHIP Documentation
+site_url: https://syship.readthedocs.io
+repo_url: https://github.com/Domiki/SySHIP
+repo_name: Domiki/SySHIP
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Importing a Hull: getting-started/importing-a-hull.md
+  - Hull:
+      - Fairing: hull/fairing.md
+      - Variation: hull/variation.md
+      - Export: hull/export.md
+  - Compartment: compart/index.md
+  - FAQ: faq.md
