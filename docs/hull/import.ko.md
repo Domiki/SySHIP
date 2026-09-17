@@ -34,7 +34,7 @@ Import 패널은 순서대로 진행되는 5단계로 이루어져 있습니다.
 
 ![Waterline 단계](../assets/screenshots/hull-import-waterline-stage.png)
 
-- **Design Draft (T<sub>d</sub>)** — 설계 흘수를 미터 단위로 입력합니다. 프로젝트 전체에서 가장 중요한 값으로, 정수력학 계산(배수량, 침수표면적, C<sub>B</sub>/C<sub>P</sub>/C<sub>M</sub>/C<sub>WP</sub>, LCB/TCB/VCB, 그리고 Properties 패널의 C<sub>P</sub> 곡선)을 좌우하며 이후 Variation과 COMPART에서도 사용됩니다.
+- **Design Draft (T<sub>d</sub>)** — 설계 흘수를 미터 단위로 입력합니다. 프로젝트 전체에서 가장 중요한 값으로, 정수력학 계산(배수량, 침수표면적, \(C_B\)/\(C_P\)/\(C_M\)/\(C_{WP}\), \(LCB\)/\(TCB\)/\(VCB\), 그리고 Properties 패널의 \(C_P\) 곡선)을 좌우하며 이후 Variation과 COMPART에서도 사용됩니다.
 - **Waterline Positions (m)** — 쉼표로 구분된 Z 위치 목록으로, 각 항목은 단일 값이거나 `start:end:step` 형태의 범위입니다. 예:
   - `2, 4.5, 8`은 정확히 그 높이에 세 개의 waterline을 만듭니다.
   - `0:20:4`는 0부터 20까지 4m 간격으로 waterline을 만듭니다(0, 4, 8, 12, 16, 20).
@@ -83,11 +83,13 @@ Section line이 생성되면, HULL의 어느 서브탭(Import/Variation/Fairing/
 | 〰 | **Wireframe** | 표면 메시 위에 단순 와이어프레임 오버레이를 켜고 끕니다. |
 | ■ | **Surface** | 음영 표면을 켜고 끕니다. 바깥쪽을 향한 면은 선택한 색으로, (개구부를 통해 보이거나 "Full Ship"이 켜졌을 때 보이는) 안쪽 면은 더 어둡고 채도가 낮게 그려져 어느 쪽을 보고 있는지 항상 구분할 수 있습니다. |
 | ▢ | **Mesh** | 삼각분할된 표면 메시 위에 촘촘한 와이어프레임을 직접 그려서 켜고 끕니다(위의 Wireframe 레이어는 station/water/buttock line만 성기게 보여주는 것과 다릅니다). |
-| (선박 아이콘) | **Full Ship** | 현재 그려진 모든 요소(표면, 라인)를 중심선 기준으로 미러링하여, 모델링한 절반이 아닌 전체 선박을 보여줍니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v13" stroke-dasharray="1.6 1.6"/><path d="M8 3c2.5 0 4 1.5 4 5s-1.5 5-4 5"/><path d="M8 3c-2.5 0-4 1.5-4 5s1.5 5 4 5"/></svg> | **Full Ship** | 현재 그려진 모든 요소(표면, 라인)를 중심선 기준으로 미러링하여, 모델링한 절반이 아닌 전체 선박을 보여줍니다. |
 | (색상 스와치) | **Surface Color** | 선체 음영 표면의 색상을 선택합니다. |
 | − / + | **Zoom Out / Zoom In** | 카메라를 현재 오빗 타깃 쪽으로/에서 멀어지는 방향으로 이동시킵니다. |
-| (뷰 아이콘 3개) | **Section / Elevation / Plan View** | 카메라를 X / Y / Z 축을 정면으로 바라보는 시점으로 부드럽게 전환합니다. |
-| (원형 화살표) | **Fit View** | 보이는 모든 형상이 화면에 들어오도록 카메라를 재조정합니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10"/><path d="M3 3v5a5 5 0 0 0 10 0V3"/></svg> | **Section View** | 선박의 종축(\(X\))을 따라 정면으로 바라보는 시점(Body Plan 뷰)으로 전환합니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h12"/><path d="M2 10c1-4 11-4 12 0"/></svg> | **Elevation View** | 선박의 폭 방향 축(\(Y\))을 따라 정면으로 바라보는 시점(Profile/Sheer 뷰)으로 전환합니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12"/><path d="M2 6v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6"/></svg> | **Plan View** | 위에서 아래로 내려다보는 시점(\(Z\), Waterplane 뷰)으로 전환합니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8a5 5 0 1 0-1.5 3.6"/><path d="M13 4.5V8H9.5"/></svg> | **Fit View** | 보이는 모든 형상이 화면에 들어오도록 카메라를 재조정합니다. |
 
 카메라 조작: 좌클릭 드래그로 회전, 스크롤로 확대/축소, 우클릭 드래그(또는 두 손가락 드래그)로 이동합니다. 우측 하단의 작은 **좌표계 아이콘**(색상이 입혀진 큐브)은 선박의 X/Y/Z 축을 기준으로 현재 보고 있는 방향을 항상 보여줍니다 — 이 큐브의 면, 모서리, 꼭짓점을 클릭하면 카메라가 정확히 그 시점으로 전환됩니다.
 
@@ -111,7 +113,7 @@ HULL 도구 패널 하단의 바는 모든 HULL 서브탭에서 항상 사용할
 
 | 아이콘 | 동작 |
 |---|---|
-| 💾 | **Save** — 마지막으로 사용한 파일에 프로젝트를 저장합니다(아직 없다면 Save As처럼 동작). |
-| 📂 | **Load** — 저장된 `.zip` 프로젝트 파일을 엽니다. |
-| ⤓ | **Save As** — 저장 위치를 지정하며, 프로젝트가 `.zip`으로 저장됩니다. |
-| ↶ / ↷ | **Undo / Redo** — 선체 모델의 편집 이력을 앞뒤로 이동합니다(Fairing과 Variation 편집도 함께 포함됩니다). |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M4.5 2v3.5h5.5V2"/><rect x="5" y="9" width="6" height="4"/></svg> | **Save** — 마지막으로 사용한 파일에 프로젝트를 저장합니다(아직 없다면 Save As처럼 동작). |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M2 4.5h4l1.2 1.5H14v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8.5z"/></svg> | **Load** — 저장된 `.zip` 프로젝트 파일을 엽니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v7M5.5 6.5 8 9l2.5-2.5"/><path d="M2.5 10v3a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/></svg> | **Save As** — 저장 위치를 지정하며, 프로젝트가 `.zip`으로 저장됩니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 1 1 1.5 3.6"/><path d="M3 4.5V8h3.5"/></svg> / <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8a5 5 0 1 0-1.5 3.6"/><path d="M13 4.5V8H9.5"/></svg> | **Undo / Redo** — 선체 모델의 편집 이력을 앞뒤로 이동합니다(Fairing과 Variation 편집도 함께 포함됩니다). |

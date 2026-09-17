@@ -52,8 +52,8 @@ drawings, and the same numbering the Body Plan and the HULL tree view use.
 
 - **Design Draft (T<sub>d</sub>)** — enter the design draft in meters. This is the single
   most important number in the project: it drives the hydrostatics calculation (displacement,
-  wetted surface, C<sub>B</sub>/C<sub>P</sub>/C<sub>M</sub>/C<sub>WP</sub>, LCB/TCB/VCB, and the
-  C<sub>P</sub> curve shown in the Properties panel) and is used later by Variation and COMPART.
+  wetted surface, \(C_B\)/\(C_P\)/\(C_M\)/\(C_{WP}\), \(LCB\)/\(TCB\)/\(VCB\), and the
+  \(C_P\) curve shown in the Properties panel) and is used later by Variation and COMPART.
 - **Waterline Positions (m)** — a comma-separated list of Z positions, where each entry is
   either a single value or a `start:end:step` range. For example:
   - `2, 4.5, 8` creates three waterlines at exactly those heights.
@@ -116,11 +116,13 @@ The toolbar above the 3D viewport, left to right:
 | 〰 | **Wireframe** | Toggles the plain wireframe overlay of the surface mesh. |
 | ■ | **Surface** | Toggles the shaded surface. The outward-facing side is drawn in your chosen color; the *inward*-facing side (visible through openings, or on the far side once "Full Ship" is on) is drawn darker and less saturated, so you can always tell which side of the hull you're looking at. |
 | ▢ | **Mesh** | Toggles a dense wireframe drawn directly over the triangulated surface mesh (as opposed to the sparse Wireframe layer above, which only shows the station/water/buttock lines). |
-| (ship icon) | **Full Ship** | Mirrors everything currently drawn (surface, lines) across the centerline, so you see the complete vessel instead of just the modeled half. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v13" stroke-dasharray="1.6 1.6"/><path d="M8 3c2.5 0 4 1.5 4 5s-1.5 5-4 5"/><path d="M8 3c-2.5 0-4 1.5-4 5s1.5 5 4 5"/></svg> | **Full Ship** | Mirrors everything currently drawn (surface, lines) across the centerline, so you see the complete vessel instead of just the modeled half. |
 | (color swatch) | **Surface Color** | Picks the hull's shaded surface color. |
 | − / + | **Zoom Out / Zoom In** | Dollies the camera toward/away from the current orbit target. |
-| (three view icons) | **Section / Elevation / Plan View** | Smoothly snaps the camera to look straight down the X / Y / Z axis. |
-| (circular arrow) | **Fit View** | Reframes the camera to fit all visible geometry. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10"/><path d="M3 3v5a5 5 0 0 0 10 0V3"/></svg> | **Section View** | Snaps the camera to look straight down the ship's long axis (\(X\)) — a body-plan view. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h12"/><path d="M2 10c1-4 11-4 12 0"/></svg> | **Elevation View** | Snaps the camera to look straight down the beam axis (\(Y\)) — a profile/sheer view. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12"/><path d="M2 6v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6"/></svg> | **Plan View** | Snaps the camera to look straight down from above (\(Z\)) — a waterplane view. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8a5 5 0 1 0-1.5 3.6"/><path d="M13 4.5V8H9.5"/></svg> | **Fit View** | Reframes the camera to fit all visible geometry. |
 
 Camera controls: left-drag to orbit, scroll to zoom, right-drag (or two-finger drag) to pan.
 A small **axis gizmo** (the colored cube in the bottom-right corner) always shows the
@@ -153,7 +155,7 @@ The bar at the bottom of the HULL tool panel is available from every HULL sub-ta
 
 | Icon | Action |
 |---|---|
-| 💾 | **Save** — writes the project to the last-used file (or behaves like Save As if none yet). |
-| 📂 | **Load** — opens a saved `.zip` project file. |
-| ⤓ | **Save As** — prompts for a file location; the project is written as a `.zip`. |
-| ↶ / ↷ | **Undo / Redo** — step the hull model's edit history backward/forward (this also covers Fairing and Variation edits). |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M4.5 2v3.5h5.5V2"/><rect x="5" y="9" width="6" height="4"/></svg> | **Save** — writes the project to the last-used file (or behaves like Save As if none yet). |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"><path d="M2 4.5h4l1.2 1.5H14v7a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-8.5z"/></svg> | **Load** — opens a saved `.zip` project file. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v7M5.5 6.5 8 9l2.5-2.5"/><path d="M2.5 10v3a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/></svg> | **Save As** — prompts for a file location; the project is written as a `.zip`. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a5 5 0 1 1 1.5 3.6"/><path d="M3 4.5V8h3.5"/></svg> / <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8a5 5 0 1 0-1.5 3.6"/><path d="M13 4.5V8H9.5"/></svg> | **Undo / Redo** — step the hull model's edit history backward/forward (this also covers Fairing and Variation edits). |

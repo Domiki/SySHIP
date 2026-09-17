@@ -27,7 +27,7 @@ Variation은 (Fairing의 국부적인 정점/면 편집과 달리) 선체 *전�
 
 ![Cp Variation 패널](../assets/screenshots/hull-variation-cp.png)
 
-Lackenby 방식의 변환을 이용해 프리즈매틱 곡선을 이동시켜, 선체가 목표 방형계수와/또는 부심종방향위치에 도달하도록 만듭니다:
+Lackenby 방식의 변환을 이용해 프리즈매틱 곡선을 이동시켜, 선체가 목표 방형계수(\(C_B\))와/또는 부심종방향위치(\(LCB\))에 도달하도록 만듭니다:
 
 - **Current C<sub>B</sub>** vs. **Target C<sub>B</sub>**(가능하면 **Reset to DIMENSION recommendation** 버튼도 표시됩니다).
 - **Current LCB from midship (m)** vs. **Target LCB from midship (m)**.

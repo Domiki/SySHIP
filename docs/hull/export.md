@@ -18,7 +18,10 @@ view) and uses simple `POLYLINE`/`VERTEX` entities for maximum compatibility wit
 tools. Enabled as soon as any line exists (you don't need the full Import wizard finished —
 station lines alone are enough).
 
+Each drawing also includes the auxiliary elements you'd expect on a real lines plan — axes,
+AP/FP, the design draft line, and station/line-name labels — each on its own DXF layer so
+you can toggle them independently in your CAD viewer.
+
 !!! note "Coming soon"
-    A future update will let you export auxiliary drawing elements (axes, AP/FP, draft
-    line, station labels, line names) to their own DXF layers, and add a pre-export
-    options dialog for choosing what to include.
+    A future update will add a pre-export options dialog for choosing which auxiliary
+    elements to include.

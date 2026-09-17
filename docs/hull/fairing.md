@@ -24,7 +24,7 @@ Click a **vertex** or a **face** on the hull surface in the 3D View to select it
   subsequent vertex edit.
 
 Edits reshape the underlying surface mesh; the affected station/waterline/buttock lines,
-hydrostatics, and C<sub>P</sub> curve all recompute automatically.
+hydrostatics, and \(C_P\) curve all recompute automatically.
 
 ## Fairness heatmap
 

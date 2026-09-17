@@ -36,7 +36,7 @@ appears so you can adopt that value with one click.
 ![Cp Variation panel](../assets/screenshots/hull-variation-cp.png)
 
 Uses a Lackenby-style transformation to shift the prismatic curve so the hull reaches a
-target block coefficient and/or longitudinal center of buoyancy:
+target block coefficient (\(C_B\)) and/or longitudinal center of buoyancy (\(LCB\)):
 
 - **Current C<sub>B</sub>** vs. **Target C<sub>B</sub>** (a **Reset to DIMENSION
   recommendation** button appears if available).
