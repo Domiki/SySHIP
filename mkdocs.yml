@@ -1,7 +1,8 @@
 site_name: SySHIP Documentation
-site_url: https://syship.readthedocs.io
+site_url: https://syship.readthedocs.io/en/latest/
 repo_url: https://github.com/Domiki/SySHIP
 repo_name: Domiki/SySHIP
+edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -22,6 +23,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - content.code.copy
+    - content.action.edit
 
 extra_css:
   - stylesheets/extra.css
