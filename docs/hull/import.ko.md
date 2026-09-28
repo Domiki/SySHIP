@@ -86,8 +86,8 @@ Section line이 생성되면, HULL의 어느 서브탭(Import/Variation/Fairing/
 | <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v13" stroke-dasharray="1.6 1.6"/><path d="M8 3c2.5 0 4 1.5 4 5s-1.5 5-4 5"/><path d="M8 3c-2.5 0-4 1.5-4 5s1.5 5 4 5"/></svg> | **Full Ship** | 현재 그려진 모든 요소(표면, 라인)를 중심선 기준으로 미러링하여, 모델링한 절반이 아닌 전체 선박을 보여줍니다. |
 | (색상 스와치) | **Surface Color** | 선체 음영 표면의 색상을 선택합니다. |
 | − / + | **Zoom Out / Zoom In** | 카메라를 현재 오빗 타깃 쪽으로/에서 멀어지는 방향으로 이동시킵니다. |
-| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10"/><path d="M3 3v5a5 5 0 0 0 10 0V3"/></svg> | **Section View** | 선박의 종축(\(X\))을 따라 정면으로 바라보는 시점(Body Plan 뷰)으로 전환합니다. |
-| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h12"/><path d="M2 10c1-4 11-4 12 0"/></svg> | **Elevation View** | 선박의 폭 방향 축(\(Y\))을 따라 정면으로 바라보는 시점(Profile/Sheer 뷰)으로 전환합니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10"/><path d="M3 3v5a5 5 0 0 0 10 0V3"/></svg> | **Section View** | 선박의 종축(\(X\))을 따라, 선미(aft)에서 바라보는 조선 관례의 Body Plan 시점으로 카메라를 전환합니다. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h12"/><path d="M2 10c1-4 11-4 12 0"/></svg> | **Elevation View** | 선박의 폭 방향 축(\(Y\))을 따라, 우현(starboard)에서 바라보는 조선 관례의 Profile/Sheer 시점으로 카메라를 전환합니다. |
 | <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12"/><path d="M2 6v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6"/></svg> | **Plan View** | 위에서 아래로 내려다보는 시점(\(Z\), Waterplane 뷰)으로 전환합니다. |
 | <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8a5 5 0 1 0-1.5 3.6"/><path d="M13 4.5V8H9.5"/></svg> | **Fit View** | 보이는 모든 형상이 화면에 들어오도록 카메라를 재조정합니다. |
 
@@ -105,7 +105,25 @@ Fairing 서브탭의 곡률 히트맵이 활성화되어 있으면 3D View 아�
 - **Section Lines** — station line(0~20번)입니다. 추가 입력란에 새 station 번호를 입력해 즉시 생성할 수 있고, 기존 선 옆의 연필/× 아이콘으로 이름 변경(재배치)이나 삭제를 할 수 있습니다.
 - **Waterlines** / **Buttock Lines** — station 번호 대신 미터 단위 Z 또는 Y 위치를 사용한다는 점만 다르고 추가/변경/삭제 방법은 동일합니다.
 
-행을 클릭하면 해당 선이 그려진 모든 뷰(2D 평면도와 3D View)에서 함께 선택됩니다.
+행을 클릭하면 해당 선이 그려진 모든 뷰(2D 평면도와 3D View)에서 함께 선택됩니다. 또한 line 행을 HULL이나
+COMPART 안의 다른 숫자 필드(Variation의 목표값, FFD 모서리 위치, COMPART Plane의 위치 등) 위로 드래그하면
+직접 입력하지 않고도 그 line의 현재 위치 값을 채울 수 있습니다.
+
+## Properties 탭 (오른쪽 패널)
+
+오른쪽 패널의 **Properties** 탭(**Lines** 옆)은 현재 설계 흘수에서 계산된 선체 제원을 읽기 전용으로 보여줍니다:
+
+- **Principal Dimensions** — \(L_{OA}\), \(L_{BP}\), \(L_{WL}\), B, D, \(T_d\), 배수량, 침수표면적, 형상 계수 \(C_B\), \(C_P\), \(C_M\), \(C_{WP}\), \(C_{VP}\), 그리고 LCB(midship 기준), TCB, VCB.
+- **C<sub>P</sub> Curve** — 단면적 곡선(X축은 station, Y축은 정규화된 면적)으로, 고정된 0~20 샘플이 아니라 현재 존재하는 모든 station line의 실제 단면적을 지나는 부드러운 곡선으로 그려집니다. 따라서 Lines 탭에서 추가·삭제·재배치한 station은 물론, 표준 AP(0)~FP(20) 범위를 벗어난 station까지도 그대로 반영됩니다.
+
+곡선 아래의 **View Details**를 클릭하면 더 큰 팝업 창이 열리며 다음을 보여줍니다:
+
+- 곡선을 실제 크기로 표시하고, midship 양쪽에 station/값 쌍을 나열한 목록을 두며, **C<sub>P</sub>**, **C<sub>PF</sub>**(전방부 프리즈매틱 계수), **C<sub>PA</sub>**(후방부 프리즈매틱 계수) 값을 함께 표시합니다.
+- 곡선 위, 대략 station 4~16 구간에 중심선 기준으로 미러링된 **body plan** 삽화가 프로파일(center line), 그리고 곡선/body plan 각각의 축척에 맞춘 흘수선 표시와 함께 그려집니다.
+- 곡선 아래에는 Properties 패널과 동일한 **Principal Dimensions**를 세 열(주요 제원, 비율/계수/LCB/VCB, 합계)로 나누어 보여줍니다.
+- **Export**는 같은 station/값 데이터를 담은 DXF(`cp_curve.dxf`)를 SySHIP 밖에서 사용할 수 있도록 내려받습니다. 다른 라인 도면 DXF 내보내기와 마찬가지로, 텍스트 라벨은 예전 AutoCAD 스트로크 폰트가 아니라 실제 TrueType 폰트로 렌더링됩니다.
+
+이 팝업은 열릴 때마다, 그리고 선체가 바뀔 때마다 현재 형상/AP/FP/흘수 기준으로 다시 계산되므로 항상 Properties 패널과 같은 값을 보여줍니다.
 
 ## 프로젝트 액션 (하단 고정 바)
 

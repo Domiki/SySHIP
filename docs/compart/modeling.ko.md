@@ -6,16 +6,17 @@ Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 �
 
 ![Create 패널, 비어있는 상태](../assets/screenshots/compart-modeling-create-empty.png)
 
-드롭다운에서 형상 종류를 선택하면 아래 입력 폼이 그에 맞게 바뀝니다. 모든 형상은 실제로 생성하기 전에 3D View에 **실시간 미리보기**가 표시됩니다:
+드롭다운에서 형상 종류를 선택하면 아래 입력 폼이 그에 맞게 바뀝니다. Box, Cylinder, Plane은 실제로 생성하기 전에 3D View에 **실시간 미리보기**를 보여줍니다:
 
 | 종류 | 필드 | 비고 |
 |---|---|---|
 | **Box** | Min (x,y,z), Max (x,y,z), 모두 m 단위 | 축에 정렬된 박스입니다. |
 | **Cylinder** | Radius (m), Point 1 (x,y,z), Point 2 (x,y,z) | 두 점을 잇는 원기둥입니다. |
-| **Plane** | Axis (X/Y/Z), Position (m) | 선택한 축에 수직인 절단 평면으로, 현재 구획 그리드 크기에 맞춰집니다. |
-| **Polyline** | Axis, Position (m), 2D (a, b) 점 목록 | 고정된 축 위치에 있는 이름/색상이 지정된 2D 외곽선입니다 — **Skinsurf**의 재료가 됩니다. 점은 순서 변경(▲/▼), 삽입, 삭제가 가능합니다. **Add Polyline**을 클릭하면 저장됩니다(솔리드가 아니라 Mesh List의 **Line** 섹션에 나타납니다). |
-| **Skinsurf** | (직접 입력하는 필드 없음) | 기존 polyline **2개 이상**을 통과하는 곡면을 로프트합니다. Mesh List의 Line 섹션에서 로프트 순서대로 클릭하며, 선택한 polyline들은 축과 점 개수가 같아야 합니다. |
+| **Plane** | Axis (X/Y/Z), Position (m) | 선택한 축에 수직인 절단 평면으로, 현재 선체의 범위에 맞춰집니다. |
+| **Skinsurf** | Num points, Axis, 하나 이상의 **폴리라인** | 2개 이상의 폴리라인을 통과하는 곡면을 로프트합니다. 폴리라인은 이 패널 안에서 직접 입력합니다(아래 참고). |
 | **Load** | STL 파일 | 외부 STL 파일을 새로운 구획 형상으로 임포트합니다. |
+
+**Skinsurf**는 더 이상 별도의 polyline mesh가 필요하지 않습니다: **Num points**(단면마다 몇 개의 2D 점을 가질지)와 단면들이 쌓이는 **Axis**를 설정한 뒤, **+ Add polyline**으로 단면을 추가합니다 — 각 단면은 해당 축 위의 **Position (m)**과 (a, b) 점들의 행을 갖습니다. 어떤 폴리라인의 박스를 클릭하면 그 폴리라인이 활성화되어 실시간 미리보기에 표시됩니다. 프로필들은 위치 순서대로 자동 정렬되어 로프트됩니다. 모든 프로필은 점 개수가 같아야 하며, 각각 서로 다른 위치를 가져야 합니다. 직접 입력하는 대신 Mesh List의 **Lines** 탭에 있는 line 값을 이 숫자 필드(Position, 또는 점의 좌표) 위로 드래그해서 채울 수도 있습니다.
 
 ![Box 생성 전 미리보기](../assets/screenshots/compart-modeling-create-box-preview.png)
 
@@ -27,71 +28,80 @@ Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 �
 
 ![Operation 패널](../assets/screenshots/compart-modeling-operation.png)
 
-드롭다운에서 연산을 선택한 뒤, 화면의 안내에 따라 (3D View가 아니라) **Mesh List**에서 요소를 클릭해 "슬롯"을 채웁니다:
+드롭다운에서 연산을 선택하면 나타나는 드롭 박스로 **Mesh List에서 mesh를 드래그해** 채웁니다(여러 개를 선택해 한 번에 드래그할 수도 있습니다):
 
-| 연산 | 슬롯 | 효과 |
+| 연산 | 드롭 박스 | 효과 |
 |---|---|---|
-| **Union** | Mesh 1, Mesh 2 | 두 mesh를 하나로 합칩니다. 원본은 제거됩니다. |
-| **Intersect** | Mesh 1, Mesh 2 | 겹치는 부피만 남깁니다. |
-| **Subtract** | Target, Tool | Target에서 Tool의 부피를 제거합니다. |
-| **Split (Mesh)** | Target, Cutting tool | 커팅 mesh가 지나가는 곳을 기준으로 Target을 분할하여 여러 개의 새 mesh를 만듭니다. |
-| **Split (Plane)** | Target, Cutting plane | 위와 동일하지만 커터로 Plane mesh를 사용합니다. |
-| **Copy** | Element | 선택한 mesh를 복제합니다. |
-| **Delete** | Element | 선택한 mesh, plane, polyline을 삭제합니다. |
-| **Transform** | Element | 선택한 mesh에 Translate/Rotate/Scale과, 필요시 mirror를 적용합니다(아래 참고). |
+| **Union** | Meshes (2개 이상) | 드롭한 모든 mesh를 하나로 합칩니다. 원본은 제거됩니다. |
+| **Intersect** | Meshes (2개 이상) | 드롭한 모든 mesh에 공통된 부피만 남깁니다. |
+| **Subtract** | Targets, Cutters | 모든 Target에서 모든 Cutter의 부피를 제거합니다. 두 박스 모두 **watertight**(닫힌) mesh만 받습니다. |
+| **Split** | Targets, Cutters | 각 Cutter(닫힌 mesh 또는 Plane)가 지나가는 곳을 기준으로 각 Target을 분할하여 새 조각을 만듭니다. cutter가 완전히 관통하지 않는 target은 분할되지 않습니다. Target은 watertight여야 하며, cutter는 (Plane처럼) 열려 있어도 됩니다. |
+| **Transform** | Meshes | 드롭한 모든 mesh에 Translate/Rotate/Scale과, 필요시 Mirror를 적용합니다(아래 참고). watertight가 아닌 mesh도 여기서는 허용됩니다. |
 
-**Transform**의 필드(mesh를 선택한 이후):
+닫힌 mesh가 필요한 연산에 watertight가 아닌 mesh를 드롭하면, 어떤 mesh가 실패했는지 알려주는 오류가 표시되며 거부됩니다.
+
+**Transform**의 필드(mesh를 하나 이상 드롭한 이후):
 
 - **Translate (m)** — dx/dy/dz.
 - **Rotate (degrees, about the origin)** — 각 축을 기준으로 회전합니다.
 - **Scale (factor, 1 = no change)** — 축별 배율입니다.
-- **Also mirror** — 지정한 축의 특정 위치를 기준으로 mesh를 반사합니다(m).
+- **Mirror** — 지정한 축의 특정 위치를 기준으로 mesh를 반사합니다(m).
 
-연산 버튼(선택한 연산의 이름이 표시됨)을 클릭해 실행하거나, **Cancel**로 선택한 슬롯을 지우고 취소할 수 있습니다.
+연산 버튼(선택한 연산의 이름이 표시됨)을 클릭해 실행하거나, **Cancel**로 드롭 박스를 비우고 취소할 수 있습니다.
+
+개별 mesh의 이름 변경·복제·삭제는 여기서 하지 않습니다 — **Mesh List**에서 하나 이상의 행을 선택한 뒤 우클릭하면 나오는 **Rename / Copy / Delete** 컨텍스트 메뉴를 사용하세요.
 
 ## Script
 
 ![Script 패널](../assets/screenshots/compart-modeling-script.png)
 
-일괄 작업이나 매개변수화된 구획 모델링을 위해, **Load Script**는 하나의 파일(`.txt` / `.script` / `.dsl`) 안에서 형상 생성, 불리언 결합, 변형, 결과 내보내기를 모두 처리할 수 있는 작은 텍스트 기반 스크립트 언어를 실행합니다. 스크립트를 불러오면 실제로 무엇이 만들어질지 실행 전에 평이한 문장으로 단계별 **미리보기**를 보여줍니다. 내용을 확인한 뒤 **Confirm**으로 실행하거나(또는 **Cancel**로 취소).
+일괄 작업이나 매개변수화된 구획 모델링을 위해, **Load Script**는 하나의 파일(`.txt` / `.script` / `.dsl`) 안에서 형상 생성, 불리언 결합, 변형, 이름 변경/색상 지정/레이어 정리, 삭제를 모두 처리할 수 있는 파이썬(Python)과 비슷한 문법의 작은 스크립트 언어를 실행합니다. 스크립트를 불러오면 실제로 무엇이 만들어질지 실행 전에 평이한 문장으로 단계별 **미리보기**를 보여줍니다. 내용을 확인한 뒤 **Confirm**으로 실행하거나 **Cancel**로 취소합니다.
 
-스크립트는 현재 선체의 주요 제원을 내장 변수로 참조할 수 있습니다 — `$LOA`, `$LBP`, `$LWL`, `$BEAM`, `$BWL`, `$DEPTH`, `$DRAFT` — 이를 활용하면 한 선체를 위해 작성한 스크립트를 크기가 다른 선체에도 재사용할 수 있습니다.
+각 줄은 함수 호출 같은 일반 표현식이거나 대입문입니다:
 
-**사용 가능한 구문** (한 줄에 하나씩; `//`는 주석):
+- `name = expr`는 결과를 스크립트 안에서만 쓰는 변수에 저장해, 이후 같은 스크립트에서 재사용할 수 있게 합니다.
+- `"Some Name" = expr` — **따옴표로 감싼** 대상은 변수를 만드는 대신, 결과 mesh를 프로젝트에서 그 이름 그대로 바꿉니다.
+- `[a, b] = split(target, cutter)`처럼 목록을 반환하는 함수(`split()` 등)를 여러 이름/따옴표 이름으로 한 번에 구조 분해할 수 있습니다.
 
-| 구문 | 문법 | 용도 |
-|---|---|---|
-| 변수 | `var name = expr` | 이후 표현식에서 재사용할 수 있는 이름 붙은 숫자를 정의합니다. |
-| Split | `xsplit name = expr` (또는 `ysplit`/`zsplit`) | 어떤 축을 따라 하나의 절단 위치에 이름을 붙입니다. 여러 줄을 추가해 여러 개의 이름 붙은 station을 만듭니다. |
-| Grid | `grid min (x,y,z) max (x,y,z)` | split/cell이 적용될 전체 바운딩 그리드를 설정합니다. |
-| Box | `box name = min (x,y,z) max (x,y,z)` | Create 패널의 Box와 동일합니다. |
-| Cylinder | `cylinder name = radius (r) p1 (x,y,z) p2 (x,y,z)` | Create 패널의 Cylinder와 동일합니다. |
-| Plane | `plane name = origin (x,y,z) normal (x,y,z) size (s)` | 절단/기준 평면입니다. |
-| Skinsurf | `skinsurf name = direction (x) profile(depth(d), points[(a,b), ...]) profile(...)` (2개 이상) | 이름 붙은 profile들을 통과하는 곡면을 로프트합니다. |
-| Union | `union name = a + b [+ c ...]` | 2개 이상의 이름 붙은 형상을 결합합니다. |
-| Intersect | `intersect name = a & b` | 두 형상의 겹치는 부분만 남깁니다. |
-| Subtract | `subtract name = target - tool` | `target`에서 `tool`의 부피를 제거합니다. |
-| Split by mesh | `split (inside, outside) = target by tool` | `target`을 다른 mesh로 분할하고, 결과 두 조각에 이름을 붙입니다. |
-| Split by plane | `split (inside, outside) = target by plane origin (x,y,z) normal (x,y,z) size (s)` | 위와 동일하지만 이름 붙은 mesh 대신 인라인 평면을 사용합니다. |
-| Transform | `translate name (dx,dy,dz)` / `rotate name (rx,ry,rz)` / `scale name (sx,sy,sz)` | 이름 붙은 형상을 그 자리에서 변형합니다. |
-| Mirror | `mirror name axis = y at = expr` | 이름 붙은 형상을 특정 축의 위치 기준으로 반사합니다. |
-| Copy | `copy name = source` | 이름 붙은 형상을 복제합니다. |
-| Delete | `delete name` | 이름 붙은 형상을 제거합니다. |
-| Cell | `cell "name" = between(x: lo..hi, y: lo..hi, z: lo..hi)` | split 그리드의 한 칸에 해당하는 박스를 만듭니다 — 각 축은 선택 사항이며(생략하면 그리드 전체 범위), `lo`/`hi`는 split 이름(또는 리터럴 `min`/`max`)입니다. |
-| Cells | `cells "name" = chain axis = x [s0, s1, s2, ...] between(y: ..., z: ...)` | 한 축을 따라 연속된 split 쌍 사이마다 인접한 셀들의 체인을 만듭니다. |
-| Clip | `clip [name, ...] to hullName` | 나열한 형상들을 선체 mesh 내부로 잘라냅니다. |
-| Export | `export "filename.stl" = [name, ...]` | 나열한 형상들을 하나의 STL로 병합하여, 스크립트 실행 시 다운로드합니다. |
+`#`는 그 줄 끝까지 이어지는 주석을 시작합니다.
 
-검증된 짧은 예시 — 선체 자체 길이의 일부 크기로 만든 박스 구획 하나를 내보내는 스크립트:
+스크립트는 (**New from HULL**을 실행할 때 밀리미터 단위로 저장된) 현재 선체의 주요 제원을 시스템 변수로 참조할 수 있습니다: `$LOA`, `$LBP`, `$LWL`, `$B`, `$BWL`, `$D`, `$T`. 또한 선체의 station/waterline/buttock line을 이름으로도 참조할 수 있습니다 — `$ST5`, `$WL7`, `$BL3.5` — 해당 line이 저장한 위치 값을 사용합니다. HULL에서 임포트되지 않은 line을 참조하면 어떤 line이 없는지 알려주는 오류가 발생합니다. 사칙연산(`+ - * /`, 괄호)은 모든 숫자 표현식에 사용할 수 있습니다.
+
+**사용 가능한 함수:**
+
+| 함수 | 용도 |
+|---|---|
+| `point2d(a, b)` / `point3d(x, y, z)` | 2D 또는 3D 좌표를 만듭니다. |
+| `box(min, max)` | Create 패널의 Box와 동일하며, 두 개의 `point3d`를 받습니다. |
+| `cylinder(radius, p1, p2)` | Create 패널의 Cylinder와 동일합니다. |
+| `plane_x(pos)` / `plane_y(pos)` / `plane_z(pos)` | 해당 축에 수직인 절단/기준 평면입니다. |
+| `polyline_x(pos, [point2d, ...])` / `polyline_y(...)` / `polyline_z(...)` | 해당 축 위의 한 위치에 단면을 정의합니다. `skinsurf()`에서 사용합니다. |
+| `skinsurf([polyline, ...])` | 2개 이상의 폴리라인(같은 축, 같은 점 개수)을 통과하는 곡면을 로프트합니다. |
+| `load("path.stl")` | 외부 STL을 임포트합니다. |
+| `copy(mesh)` / `copy([mesh, ...])` | mesh 하나 또는 목록을 복제합니다. |
+| `union(a, b, ...)` | 2개 이상의 mesh를 결합합니다. |
+| `intersect(a, b, ...)` | 모든 mesh에 공통된 부피만 남깁니다. |
+| `subtract(targets, cutters)` | targets에서 cutters의 부피를 제거합니다(각 인자는 mesh 하나 또는 목록일 수 있습니다). |
+| `split(targets, cutters)` | cutters를 기준으로 targets를 분할하여, target별 결과 조각들을 반환합니다. |
+| `translate(meshes, offset)` / `rotate(meshes, angles)` / `scale(meshes, factors)` | `point3d`를 받아 그 자리에서 변형합니다. |
+| `mirror_x(meshes, pos)` / `mirror_y(...)` / `mirror_z(...)` | 해당 축의 위치를 기준으로 반사합니다. |
+| `rename(mesh(es), name(s))` | mesh 하나 또는 대응하는 목록의 이름을 바꿉니다. |
+| `delete(mesh(es))` | mesh 하나 또는 목록을 제거합니다. |
+| `set_color(meshes, (r, g, b))` | Mesh List 색상을 설정합니다(채널 값 0–255). |
+| `layer("name")` | 레이어를 만들거나(이미 있으면 그 레이어를 반환), `move_layer()`에서 사용합니다. |
+| `move_layer(meshes, layer)` / `rename_layer(layer, name)` / `delete_layer(layer)` | Mesh List의 레이어로 mesh를 정리합니다. |
+
+검증된 짧은 예시 — 선체 자체 길이의 일부 크기로 만들어 midship을 중심에 놓고, 생성과 동시에 이름을 붙이는 박스 구획 하나:
 
 ```text
-// midship을 중심으로 LBP의 1/3 길이인 탱크 하나.
-var tankLength = $LBP / 3
-var midX = $LBP / 2
+# midship을 중심으로 LBP의 1/3 길이인 탱크 하나.
+tankLength = $LBP / 3
+midX = $LBP / 2
 
-box tank = min (midX - tankLength / 2, -$BEAM / 2, 0) max (midX + tankLength / 2, $BEAM / 2, $DEPTH)
-
-export "tank.stl" = [tank]
+"Tank 1" = box(point3d(midX - tankLength / 2, -$B / 2, 0), point3d(midX + tankLength / 2, $B / 2, $D))
 ```
 
 스크립트가 파싱되지 않거나 실행에 실패하면, 오류 메시지에 문제가 발생한 줄 번호와 내용이 함께 표시됩니다.
+
+!!! note "내보내기 함수는 없습니다"
+    스크립트는 mesh를 만들고 정리하는 역할만 합니다 — 완성된 구획 모델을 내보내려면 스크립트 실행 후 [Export](export.md) 탭을 사용하세요.

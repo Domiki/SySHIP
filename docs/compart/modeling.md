@@ -8,17 +8,25 @@ combine, cut, and transform. It has three inner tabs: **Create**, **Operation**,
 
 ![Create panel, empty](../assets/screenshots/compart-modeling-create-empty.png)
 
-Pick a shape type from the dropdown; the form below switches to match it. Every shape
-shows a **live preview** in the 3D View as you type, before you commit it:
+Pick a shape type from the dropdown; the form below switches to match it. Box, Cylinder, and
+Plane show a **live preview** in the 3D View as you type, before you commit them:
 
 | Type | Fields | Notes |
 |---|---|---|
 | **Box** | Min (x,y,z), Max (x,y,z), all in m | Axis-aligned box. |
 | **Cylinder** | Radius (m), Point 1 (x,y,z), Point 2 (x,y,z) | A cylinder running between the two points. |
-| **Plane** | Axis (X/Y/Z), Position (m) | A cutting plane perpendicular to the chosen axis, sized to the current compartment grid. |
-| **Polyline** | Axis, Position (m), a list of 2D (a, b) points | A named, colored 2D outline at a fixed position on one axis — the building block for **Skinsurf**. Points can be reordered (▲/▼), inserted, or removed. Click **Add Polyline** to save it (it appears under the Mesh List's **Line** section, not as a solid). |
-| **Skinsurf** | (no direct fields) | Lofts a surface through **2 or more** existing polylines. Click them in the Mesh List's Line section, in loft order; they must share the same axis and point count. |
+| **Plane** | Axis (X/Y/Z), Position (m) | A cutting plane perpendicular to the chosen axis, sized to the current hull's bounds. |
+| **Skinsurf** | Num points, Axis, one or more **polylines** | Lofts a surface through 2 or more polylines, entered directly in this panel (see below). |
 | **Load** | STL file | Imports an arbitrary external STL as a new compartment shape. |
+
+**Skinsurf** no longer needs separate polyline meshes: set **Num points** (how many 2D points
+each cross-section has) and the **Axis** the profiles are stacked along, then **+ Add
+polyline** to add a cross-section — each one gets a **Position (m)** along that axis and a
+row of (a, b) point fields. Click a polyline's box to make it the active one shown in the
+live preview; profiles are automatically sorted and lofted in position order. All profiles
+must share the same point count, and each needs a distinct position. You can drag a line's
+value from the **Lines** tab of the Mesh List straight onto any of these numeric fields
+(Position, or a point's coordinate) instead of typing it.
 
 ![Box preview before creating it](../assets/screenshots/compart-modeling-create-box-preview.png)
 
@@ -30,82 +38,99 @@ Click **Create** to commit the shape (added to the Mesh List), or **Cancel** to 
 
 ![Operation panel](../assets/screenshots/compart-modeling-operation.png)
 
-Pick an operation from the dropdown, then click elements **in the Mesh List** (not the 3D
-view) to fill its "slots," as prompted by the on-screen hint:
+Pick an operation from the dropdown, then **drag meshes from the Mesh List** into the drop
+box(es) that appear (you can select and drag several meshes at once):
 
-| Operation | Slots | Effect |
+| Operation | Drop boxes | Effect |
 |---|---|---|
-| **Union** | Mesh 1, Mesh 2 | Combines two meshes into one; the originals are removed. |
-| **Intersect** | Mesh 1, Mesh 2 | Keeps only the overlapping volume. |
-| **Subtract** | Target, Tool | Removes the Tool's volume from the Target. |
-| **Split (Mesh)** | Target, Cutting tool | Splits the Target wherever the cutting-tool mesh passes through it, producing multiple new meshes. |
-| **Split (Plane)** | Target, Cutting plane | Same, using a Plane mesh as the cutter. |
-| **Copy** | Element | Duplicates the selected mesh. |
-| **Delete** | Element | Removes the selected mesh, plane, or polyline. |
-| **Transform** | Element | Applies Translate/Rotate/Scale, and optionally a mirror, to the selected mesh (see below). |
+| **Union** | Meshes (2+) | Combines all dropped meshes into one; the originals are removed. |
+| **Intersect** | Meshes (2+) | Keeps only the volume common to every dropped mesh. |
+| **Subtract** | Targets, Cutters | Removes every Cutter's volume from every Target. Both boxes only accept **watertight** meshes. |
+| **Split** | Targets, Cutters | Splits each Target wherever a Cutter (a closed mesh *or* a Plane) passes through it, producing new pieces; a target that a cutter doesn't fully cross isn't split. Targets must be watertight; cutters may be open (e.g. a Plane). |
+| **Transform** | Meshes | Applies Translate/Rotate/Scale, and optionally a Mirror, to every dropped mesh (see below). Non-watertight meshes are allowed here. |
 
-**Transform** fields, once a mesh is picked:
+Dropping a non-watertight mesh where the operation requires a closed one is rejected with an
+error naming which mesh(es) failed.
+
+**Transform** fields, once at least one mesh is dropped:
 
 - **Translate (m)** — dx/dy/dz.
 - **Rotate (degrees, about the origin)** — around each axis.
 - **Scale (factor, 1 = no change)** — per axis.
-- **Also mirror** — reflects the mesh across a chosen axis at a given position (m).
+- **Mirror** — reflects the mesh(es) across a chosen axis at a given position (m).
 
 Click the operation's button (its label matches the chosen operation) to run it, or
-**Cancel** to back out and clear the picked slots.
+**Cancel** to back out and clear the drop boxes.
+
+Renaming, copying, and deleting individual meshes isn't done here — right-click one or more
+selected rows in the **Mesh List** for a **Rename / Copy / Delete** context menu instead.
 
 ## Script
 
 ![Script panel](../assets/screenshots/compart-modeling-script.png)
 
-For batch or parametric compartment modeling, **Load Script** runs a small text-based
+For batch or parametric compartment modeling, **Load Script** runs a small Python-like
 scripting language (`.txt` / `.script` / `.dsl` files) that can create shapes, boolean them
-together, transform them, and export results — all in one file. Loading a script shows a
-plain-English, step-by-step **preview** of what it will do before anything is actually
-created; review it, then **Confirm** to run it (or **Cancel** to discard).
+together, transform them, rename/recolor/organize them into layers, and delete them — all in
+one file. Loading a script shows a plain-English, step-by-step **preview** of what it will do
+before anything is actually created; review it, then **Confirm** to run it (or **Cancel** to
+discard).
 
-Scripts can reference the current hull's principal dimensions (taken from the HULL tab's
-hydrostatics, in millimeters — the same internal unit every coordinate in a script is
-written in) as system variables: `$LOA`, `$LBP`, `$LWL`, `$BEAM`, `$BWL`, `$DEPTH`,
-`$DRAFT`. Arithmetic (`+ - * /`, parentheses) works on any expression.
+Each line is either a plain expression (usually a function call) or an assignment:
 
-**Available statements** (one per line; `//` starts a comment):
+- `name = expr` stores the result under a script-only variable you can reuse later in the
+  same script.
+- `"Some Name" = expr` — a **quoted** target instead renames the resulting mesh to that exact
+  name in the project (it does not also create a variable).
+- `[a, b] = split(target, cutter)` destructures a function that returns a list (like
+  `split()`) into several names/quoted names at once.
 
-| Statement | Syntax | Purpose |
-|---|---|---|
-| Variable | `var name = expr` | Defines a named number you can reuse in later expressions. |
-| Split | `xsplit name = expr` (or `ysplit`/`zsplit`) | Names one cut position along an axis. Add one line per cut to build up a set of named stations. |
-| Grid | `grid min (x,y,z) max (x,y,z)` | Sets the overall bounding grid the splits/cells apply within. |
-| Box | `box name = min (x,y,z) max (x,y,z)` | Same as the Create panel's Box. |
-| Cylinder | `cylinder name = radius (r) p1 (x,y,z) p2 (x,y,z)` | Same as the Create panel's Cylinder. |
-| Plane | `plane name = origin (x,y,z) normal (x,y,z) size (s)` | A cutting/reference plane. |
-| Skinsurf | `skinsurf name = direction (x) profile(depth(d), points[(a,b), ...]) profile(...)` (2+ profiles) | Lofts a surface through named profiles. |
-| Union | `union name = a + b [+ c ...]` | Combines 2 or more named shapes. |
-| Intersect | `intersect name = a & b` | Keeps only the overlap of two shapes. |
-| Subtract | `subtract name = target - tool` | Removes `tool`'s volume from `target`. |
-| Split by mesh | `split (inside, outside) = target by tool` | Splits `target` by another mesh, naming the two resulting pieces. |
-| Split by plane | `split (inside, outside) = target by plane origin (x,y,z) normal (x,y,z) size (s)` | Same, using an inline plane instead of a named mesh. |
-| Transform | `translate name (dx,dy,dz)` / `rotate name (rx,ry,rz)` / `scale name (sx,sy,sz)` | Transforms a named shape in place. |
-| Mirror | `mirror name axis = y at = expr` | Mirrors a named shape across an axis at a position. |
-| Copy | `copy name = source` | Duplicates a named shape. |
-| Delete | `delete name` | Removes a named shape. |
-| Cell | `cell "name" = between(x: lo..hi, y: lo..hi, z: lo..hi)` | Creates a box spanning one cell of the split grid — each axis is optional (omit for the grid's full extent) and its `lo`/`hi` are split names (or the literal `min`/`max`). |
-| Cells | `cells "name" = chain axis = x [s0, s1, s2, ...] between(y: ..., z: ...)` | Creates a chain of adjacent cells between each pair of consecutive splits along one axis. |
-| Clip | `clip [name, ...] to hullName` | Trims the listed shapes to the inside of a hull mesh. |
-| Export | `export "filename.stl" = [name, ...]` | Merges the listed shapes into a single STL, downloaded once the script runs. |
+`#` starts a comment that runs to the end of the line.
 
-A short, verified example — one box compartment sized to a fraction of the hull's own
-length, then exported:
+Scripts can reference the current hull's principal dimensions (captured in millimeters when
+you ran **New from HULL**) as system variables: `$LOA`, `$LBP`, `$LWL`, `$B`, `$BWL`, `$D`,
+`$T`. They can also reference any of the hull's own station/waterline/buttock lines by name —
+`$ST5`, `$WL7`, `$BL3.5` — using that line's captured position; referencing a line that wasn't
+imported from HULL raises an error naming which one is missing. Arithmetic (`+ - * /`,
+parentheses) works on any numeric expression.
+
+**Available functions:**
+
+| Function | Purpose |
+|---|---|
+| `point2d(a, b)` / `point3d(x, y, z)` | Builds a 2D or 3D coordinate. |
+| `box(min, max)` | Same as the Create panel's Box, given two `point3d`s. |
+| `cylinder(radius, p1, p2)` | Same as the Create panel's Cylinder. |
+| `plane_x(pos)` / `plane_y(pos)` / `plane_z(pos)` | A cutting/reference plane perpendicular to that axis. |
+| `polyline_x(pos, [point2d, ...])` / `polyline_y(...)` / `polyline_z(...)` | Defines a cross-section at a position along that axis, for use in `skinsurf()`. |
+| `skinsurf([polyline, ...])` | Lofts a surface through 2+ polylines (same axis, same point count). |
+| `load("path.stl")` | Imports an external STL. |
+| `copy(mesh)` / `copy([mesh, ...])` | Duplicates one mesh or a list of meshes. |
+| `union(a, b, ...)` | Combines 2 or more meshes. |
+| `intersect(a, b, ...)` | Keeps only the volume common to all of them. |
+| `subtract(targets, cutters)` | Removes the cutters' volume from the targets (each argument can be one mesh or a list). |
+| `split(targets, cutters)` | Splits the targets by the cutters; returns the resulting pieces per target. |
+| `translate(meshes, offset)` / `rotate(meshes, angles)` / `scale(meshes, factors)` | Transforms in place, given a `point3d`. |
+| `mirror_x(meshes, pos)` / `mirror_y(...)` / `mirror_z(...)` | Mirrors across that axis at a position. |
+| `rename(mesh(es), name(s))` | Renames one mesh or a matching list of meshes. |
+| `delete(mesh(es))` | Removes one mesh or a list of meshes. |
+| `set_color(meshes, (r, g, b))` | Sets the Mesh List color, channels 0–255. |
+| `layer("name")` | Creates (or returns) a layer, for use with `move_layer()`. |
+| `move_layer(meshes, layer)` / `rename_layer(layer, name)` / `delete_layer(layer)` | Organizes meshes into the Mesh List's layers. |
+
+A short, verified example — one box compartment sized to a fraction of the hull's own length,
+centered on midship, renamed directly on creation:
 
 ```text
-// A single midship tank, 1/3 of LBP long, centered on midship.
-var tankLength = $LBP / 3
-var midX = $LBP / 2
+# A single midship tank, 1/3 of LBP long, centered on midship.
+tankLength = $LBP / 3
+midX = $LBP / 2
 
-box tank = min (midX - tankLength / 2, -$BEAM / 2, 0) max (midX + tankLength / 2, $BEAM / 2, $DEPTH)
-
-export "tank.stl" = [tank]
+"Tank 1" = box(point3d(midX - tankLength / 2, -$B / 2, 0), point3d(midX + tankLength / 2, $B / 2, $D))
 ```
 
-If a script fails to parse or run, the error message names the line number and the
-problem.
+If a script fails to parse or run, the error message names the line number and the problem.
+
+!!! note "No export function"
+    Scripts build and organize meshes only — to export the finished compartment model, use
+    the [Export](export.md) tab once the script has run.

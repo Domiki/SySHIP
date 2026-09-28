@@ -9,7 +9,10 @@ a new target dimension or coefficient, while keeping the hull's overall characte
 Every Variation panel that changes a global dimension shows its **current** value read from
 the hull alongside a **target** value you type in, and a bold **Change &lt;X&gt;** title.
 Where a DIMENSION tab design ship exists, a **"Reset to DIMENSION recommendation"** button
-appears so you can adopt that value with one click.
+appears so you can adopt that value with one click. Any numeric field here (a custom
+reference position, an FFD corner target, a protection-box bound) also accepts a line dragged
+from the **Lines** tab of the right-hand panel — drop it to fill the field with that line's
+current position instead of typing it.
 
 ## Change Length
 

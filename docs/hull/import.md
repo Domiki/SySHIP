@@ -119,8 +119,8 @@ The toolbar above the 3D viewport, left to right:
 | <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5v13" stroke-dasharray="1.6 1.6"/><path d="M8 3c2.5 0 4 1.5 4 5s-1.5 5-4 5"/><path d="M8 3c-2.5 0-4 1.5-4 5s1.5 5 4 5"/></svg> | **Full Ship** | Mirrors everything currently drawn (surface, lines) across the centerline, so you see the complete vessel instead of just the modeled half. |
 | (color swatch) | **Surface Color** | Picks the hull's shaded surface color. |
 | − / + | **Zoom Out / Zoom In** | Dollies the camera toward/away from the current orbit target. |
-| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10"/><path d="M3 3v5a5 5 0 0 0 10 0V3"/></svg> | **Section View** | Snaps the camera to look straight down the ship's long axis (\(X\)) — a body-plan view. |
-| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h12"/><path d="M2 10c1-4 11-4 12 0"/></svg> | **Elevation View** | Snaps the camera to look straight down the beam axis (\(Y\)) — a profile/sheer view. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h10"/><path d="M3 3v5a5 5 0 0 0 10 0V3"/></svg> | **Section View** | Snaps the camera to look straight down the ship's long axis (\(X\)), viewed from aft — the naval-architecture body-plan convention. |
+| <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h12"/><path d="M2 10c1-4 11-4 12 0"/></svg> | **Elevation View** | Snaps the camera to look straight down the beam axis (\(Y\)), viewed from starboard — the naval-architecture profile/sheer-view convention. |
 | <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12"/><path d="M2 6v2a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V6"/></svg> | **Plan View** | Snaps the camera to look straight down from above (\(Z\)) — a waterplane view. |
 | <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 8a5 5 0 1 0-1.5 3.6"/><path d="M13 4.5V8H9.5"/></svg> | **Fit View** | Reframes the camera to fit all visible geometry. |
 
@@ -147,7 +147,41 @@ model, grouped by type:
 - **Waterlines** / **Buttock Lines** — same add/rename/delete controls, using a Z or Y
   position in meters instead of a station number.
 
-Clicking any row selects that line everywhere it's drawn (2D plans and 3D View).
+Clicking any row selects that line everywhere it's drawn (2D plans and 3D View). You can
+also drag a line's row onto any numeric field elsewhere in HULL or COMPART (a Variation
+target, an FFD corner position, a COMPART Plane position, and so on) to fill that field with
+the line's current position instead of typing it.
+
+## Properties tab (right panel)
+
+The right-hand panel's **Properties** tab (next to **Lines**) shows the hull's computed
+particulars at the current design draft, read-only:
+
+- **Principal Dimensions** — \(L_{OA}\), \(L_{BP}\), \(L_{WL}\), B, D, \(T_d\), displacement
+  volume, wetted surface area, and the form coefficients \(C_B\), \(C_P\), \(C_M\),
+  \(C_{WP}\), \(C_{VP}\), plus LCB (from midship), TCB, and VCB.
+- **C<sub>P</sub> Curve** — the sectional-area curve (station on the X axis, normalized area
+  on the Y axis), drawn as a smooth curve through the actual sectional area at every current
+  station line — not a fixed 0–20 sample, so it reflects any stations you've added, removed,
+  renumbered, or moved in the Lines tab, including ones outside the standard AP(0)–FP(20)
+  range.
+
+Click **View Details** below the curve to open it in a larger popup window, which shows:
+
+- The curve full-size, flanked by a column of station/value pairs on each side of
+  midship, and overlaid with the **C<sub>P</sub>**, **C<sub>PF</sub>** (prismatic coefficient
+  of the forward body), and **C<sub>PA</sub>** (prismatic coefficient of the aft body) values.
+- A **body plan** inset is drawn directly on the curve between roughly station 4 and station
+  16, mirrored about the centerline, alongside the profile (center line) and a draft-line
+  marker at both the curve's and the body plan's scale.
+- Below the curve, the same **Principal Dimensions** as the Properties panel, laid out in
+  three columns (principal dimensions, ratios/coefficients/LCB/VCB, totals).
+- **Export** downloads a DXF of the curve (`cp_curve.dxf`) with the same station/value data,
+  for use outside SySHIP; like the other lines-plan DXF exports, its text labels render with a
+  real TrueType font rather than the classic AutoCAD stroke font.
+
+The popup recomputes from the current geometry/AP/FP/draft each time it opens or the hull
+changes, so it always matches what's in the Properties panel.
 
 ## Project actions (sticky footer)
 

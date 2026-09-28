@@ -20,7 +20,13 @@ station lines alone are enough).
 
 Each drawing also includes the auxiliary elements you'd expect on a real lines plan — axes,
 AP/FP, the design draft line, and station/line-name labels — each on its own DXF layer so
-you can toggle them independently in your CAD viewer.
+you can toggle them independently in your CAD viewer. Text labels render with a real
+TrueType font (Arial) rather than the classic AutoCAD stroke font, so they show up as solid
+glyphs in any viewer.
+
+!!! note "Cp curve DXF export"
+    The sectional-area (\(C_P\)) curve has its own, separate DXF export — see the **View
+    Details** popup described in [Import](import.md#properties-tab-right-panel).
 
 !!! note "Coming soon"
     A future update will add a pre-export options dialog for choosing which auxiliary

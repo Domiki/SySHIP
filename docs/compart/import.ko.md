@@ -8,9 +8,8 @@
 
 이 동작은:
 
-- 선택한 선체를 **"Hull"**이라는 이름의 mesh로 임포트합니다.
-- 선체의 현재 station/waterline/buttock line과 AP/FP 위치를 COMPART 프로젝트에 스냅샷으로 저장합니다(Mesh List의 **Lines** 탭에서 읽기 전용으로 확인 가능).
-- [Modeling](modeling.md)의 스크립트 `xsplit`/`ysplit`/`zsplit`/`grid`/`cell` 명령이 사용하는 구획 그리드를 초기화합니다.
+- 선택한 선체를 **"Hull"**이라는 이름의 mesh로 임포트합니다(원본 그대로의 사본도 별도로 보관해 [Export](export.md)의 "Export Hull STL"과 [Stability](stability.md)의 손상 범위 참고 표에 사용합니다).
+- 선체의 현재 station/waterline/buttock line과 AP/FP 위치, 그리고 주요 제원을 COMPART 프로젝트에 스냅샷으로 저장합니다 — line은 Mesh List의 **Lines** 탭에서 읽기 전용으로 확인할 수 있고, 두 스냅샷 모두 [Modeling](modeling.md) 스크립트가 `$LOA`/`$LBP`/.../`$ST5`/`$WL7` 등으로 참조하는 값입니다.
 
 이미 COMPART 프로젝트가 존재하는 상태에서 **New from HULL**을 클릭하면 먼저 확인을 요청합니다 — 현재 프로젝트의 모든 내용이 삭제되기 때문입니다.
 

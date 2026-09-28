@@ -12,15 +12,20 @@ there and re-import.
 
 ## Setting up the sweep
 
+- **Shell thickness (mm)** — an optional plating allowance added to the modeled (moulded)
+  hull surface. It only affects the **Extreme** fields (below): Volume/Displacement Extreme =
+  the moulded value plus wetted surface area × this thickness, approximating the hull's
+  outside-of-plating envelope without actually re-meshing it. Leave it at 0 to treat the
+  modeled surface as the outer shell.
 - **Draft**, **Trim**, **Heel** — each a **start / step / end** range (Draft and Trim in m,
   Heel in degrees). Trim and Heel default to 0/0/0 (upright, even keel) if you only care
   about draft.
-- **Values to compute** — a checkbox grid of every available field: Volume (moulded and
-  extreme), Displacement (moulded and extreme), LCB (overall, forward-half, aft-half),
-  LCF, VCB, TCB, transverse and longitudinal moments of inertia (I<sub>T</sub>/I<sub>L</sub>),
-  BM<sub>T</sub>/KM<sub>T</sub>, BM<sub>L</sub>/KM<sub>L</sub>, MTC, TPC, WSA, A<sub>WP</sub>,
-  A<sub>M</sub>, C<sub>B</sub>/C<sub>WP</sub>/C<sub>M</sub>/C<sub>P</sub>, and Trim. A
-  sensible subset is pre-checked by default.
+- **Hydrostatic Values** — a checkbox grid of every available field, all checked by default:
+  Volume (Moulded and Extreme), Displacement (Moulded and Extreme), LCB (overall, forward-half,
+  aft-half), LCF, VCB, TCB, transverse and longitudinal moments of inertia
+  (I<sub>T</sub>/I<sub>L</sub>), BM<sub>T</sub>/KM<sub>T</sub>, BM<sub>L</sub>/KM<sub>L</sub>,
+  MTC, TPC, WSA, A<sub>WP</sub>, A<sub>M</sub>, C<sub>B</sub>/C<sub>WP</sub>/C<sub>M</sub>/C<sub>P</sub>,
+  and Trim.
 
 ![Hydro tab, sweep set up](../assets/screenshots/compart-hydro-form.png)
 
@@ -40,7 +45,8 @@ Click **Show** to open a separate results window:
   **Export CSV** button downloads the *entire* grid (every trim/heel slice, not just the
   one shown).
 - **Curve view**: every selected field plotted as its own curve against draft (draft on the
-  vertical axis, low to high bottom-to-top). A legend on the right lets you enable/disable
-  each series, recolor it, and apply a numeric **scale** and **offset** so curves of very
-  different magnitude (say TPC and LCB) can share one readable chart. **Export Image**
-  rasterizes the chart to a PNG.
+  vertical axis, low to high bottom-to-top). Axis limit fields above the chart let you fix the
+  X and Draft ranges and grid spacing instead of relying on auto-scaling. A legend on the
+  right lets you enable/disable each series, recolor it, and apply a numeric **scale** and
+  **offset** so curves of very different magnitude (say TPC and LCB) can share one readable
+  chart. **Export Image** rasterizes the chart to a PNG.
