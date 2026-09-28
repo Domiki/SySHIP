@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
-  "url": "https://github.com/Domiki/SySHIP/releases/tag/v0.1.0",
-  "notes": "Hull-only release: HULL design workflow (import, fairing, variation, CP curve detail popup with CPA/CPF and DXF export)."
+  "version": "0.2.0",
+  "url": "https://github.com/Domiki/SySHIP/releases/tag/v0.2.0",
+  "notes": "SyCOMPART is now available.\n\n## Highlights\n\n- **SyCOMPART**: a full compartment modeling module — script-based mesh creation (Python-like syntax), a mesh inspector, layer-based organization, multi-select operations, and drag-in mesh boxes.\n- **Stability criteria evaluation**: IMO Res. A.749(18) intact stability criteria and MARPOL/ICLL deterministic damage stability criteria, each with automatic pass/fail results, openings, and deck-edge immersion checks.\n- **Shell thickness modeling**: reduction/filling loading factors per compartment, and Volume-Extreme vs. Volume-Molded hydrostatics that account for shell thickness.\n- **HULL**: smoother, dynamically updating Cp curve (reflects the actual station set, including out-of-range stations), a Cp curve detail popup with CPA/CPF and body plan, and DXF export with proper TrueType (Arial) text instead of the default stroke font.\n- Shared camera controls and view tools between the HULL and COMPART 3D views.\n\n## Notes\n\n- This release covers the HULL and COMPART modules. DIMENSION is not included in this build.\n- Windows only in this release; the macOS build will follow separately.\n"
 }
