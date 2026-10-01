@@ -1,79 +1,125 @@
 # Stability
 
-Solves a free-trim equilibrium at each heel angle in a **user-configurable range** to build
-the ship's righting-arm (**GZ**) curve, then evaluates that curve against IMO/MARPOL/ICLL
-stability criteria. With nothing checked in [Damage](damage.md), this is the ordinary
-**intact stability** case; with one or more compartments flooded there, it's a
-**damage-stability** case instead — the same GZ solve either way, just judged against
-different criteria.
+Finds where the ship floats for the current loading condition and judges its righting-arm
+(**GZ**) curve against stability criteria. With nothing flooded in [Damage](damage.md) this is
+an **intact** case; with compartments flooded it is a **damage** case. The same physics runs
+either way; only the default criteria differ.
 
-![Stability tab](../assets/screenshots/compart-stability-default.png)
+Stability uses the [Loading](loading.md) tab's total weight and combined CG. Partly filled
+liquid tanks are modeled with their real free surface: at every heel and trim the liquid is
+re-leveled, so the free-surface effect is already in the GZ values.
 
-Stability uses the [Loading](loading.md) tab's current total weight and combined CG as the
-ship's weight — there's no separate weight input here beyond seawater density. It also
-uses the hull's AP/FP (captured at import) to convert the solved trim angle into a linear
-trim distance.
+Set **Seawater density (t/m³)** (default 1.025) at the top of the tab. It applies to both
+sections below.
 
-1. Set **Seawater density (t/m³)** (default 1.025).
-2. Set the **Heel** range — Start / Step / End (deg). Unlike a fixed sweep, you choose the
-   resolution and extent yourself; 0° is always included even if Start is greater than 0, and
-   the sweep is capped at 181 points.
-3. Optionally add **Openings** (see below).
-4. Click **Run**.
+## 1. Equilibrium
 
-## Openings
+Click **Find Equilibrium**. SySHIP solves heel, trim and draft together so that buoyancy
+equals weight and the centre of buoyancy lines up with the centre of gravity.
 
-**Openings** lists down-flooding points — hull openings (doors, vents, hatches) whose
-immersion determines the **flooding angle** \(\phi_f\) used by the intact-stability area
-checks and by the damage-stability range/final-waterline checks. Each opening has a **Name**
-and an **x / y / z (m)** position; **+ Opening** adds one, and the × button removes it. With
-no openings defined, \(\phi_f\) falls back to the angle of vanishing stability (where the GZ
-curve last crosses zero), and the results note this substitution.
+The results show:
 
-## Results
+- **Heel** - size and side (port or starboard), or 0° (upright)
+- **Trim** - angle, and the trim over the LBP when the hull's AP/FP are known
+- **Waterline z** - the height of the water surface in the model's coordinates (not a draft
+  measured from the keel)
+- **Displacement**, **LCB**, **TCB**, **VCB**
+- **Deck edge freeboard** - the smallest freeboard of the deck edge at equilibrium
 
-- **GZ curve chart** — GZ (m) vs. heel angle (deg), one point per swept angle, drawn inline
-  once a run finishes.
-- **View Details** opens a separate window with the full breakdown:
-    - The GZ curve again, at full size, plus a **Download CSV** of every swept point (Heel,
-      Draft, Trim, LCB, TCB, VCB, GZ, converged) and a note if any heel point failed to fully
-      converge.
-    - **Equilibrium** — Draft (m), Trim (m if the hull's LBP is known, otherwise the raw
-      trim angle), the solved equilibrium **Heel** (0° for an upright-stable loading, greater
-      than 0° for a listing/asymmetric one, labeled port/starboard), LCB/TCB/VCB (m), the
-      **deck-edge freeboard** at equilibrium, the **flooding angle** \(\phi_f\), and — if any
-      Openings are defined — each opening's freeboard at equilibrium (highlighted if it's at
-      or below the waterline).
-    - One section per evaluated **ruleset**, each showing **All satisfied** or **Not
-      satisfied** and a row per individual check (a ✓/✗ mark, the actual value, and the
-      required value). Which ruleset(s) run depends on whether anything is flooded in
-      [Damage](damage.md):
-        - **Nothing flooded** → **Intact — IMO Res.A.749(18)** only. Checks Area A (0–30°) ≥
-          0.055 m·rad, Area A+B (0° to min(40°, \(\phi_f\))) ≥ 0.09 m·rad, Area B (30° to that
-          same upper bound) ≥ 0.030 m·rad, GZ at 30° ≥ 0.20 m, angle of maximum GZ ≥ 25°, and
-          initial \(GM_0\) ≥ 0.15 m (read off the GZ curve's own slope at the smallest
-          nonzero swept heel).
-        - **One or more compartments flooded** → both **Damage — MARPOL Annex I Reg.28** and
-          **Damage — ICLL Reg.27 (Type A)** run instead (the intact ruleset is skipped for
-          that run). Each checks the equilibrium heel against a limit (25°/30° for MARPOL,
-          15°/17° for ICLL — the relaxed limit applies if the deck edge isn't immersed), the
-          range of positive GZ beyond equilibrium (≥ 20°), the maximum residual GZ within that
-          range (≥ 0.1 m), the area under the curve within that range (≥ 0.0175 m·rad), and —
-          if Openings are defined — that the final waterline stays below the lowest opening.
-    - A **Damage extents (reference)** table (whenever the hull's AP and depth are known,
-      whether or not anything is actually flooded) lists the MARPOL/ICLL side, bottom,
-      bottom-raking, and ICLL side damage-extent formulas (longitudinal/transverse/vertical)
-      computed from the hull's own \(L_f\), FP′, breadth, and the [Loading](loading.md) tab's
-      deadweight — for you to compare against wherever you actually modeled the breach in
-      [Damage](damage.md); SySHIP does not automatically place or size a damage case for you.
+**Show Result / Hide Result** switches the 3D View between the upright model and the
+equilibrium attitude with an opaque sea surface at the equilibrium waterline.
 
-Once run, the 3D View tilts the hull/compartments to the equilibrium heel and trim and
-draws a translucent sea plane at the equilibrium draft.
+## 2. GZ Curve
+
+Set the **Heel step (deg)** (default 1°, from 0.25° to 90°) and click **Run GZ Curve**. The
+heel is swept from -90° (port) to 90° (starboard) with free trim. A smaller step gives a
+more accurate curve but takes longer.
+
+Click **View Details** to open the **Stability criteria** window.
+
+## Stability criteria window
+
+![Stability criteria window](../assets/screenshots/compart-stability-criteria.png)
+
+### GZ curve (left)
+
+- **Curve fit** - how the computed points are joined. The chosen fit is used for every
+  value, intersection, peak and area in the criteria, not only for drawing.
+    - **Cubic spline** (default) - smooth and accurate even with a coarse heel step; it can
+      overshoot slightly where the curve bends sharply (for example at deck edge immersion).
+    - **PCHIP** - smooth without overshoot, but a peak between two points is cut off.
+    - **Linear** - straight lines between points.
+- **Download CSV** - every computed point (heel, draft, trim, LCB, TCB, VCB, GZ, converged).
+- **Heel / GZ** - start, end and grid spacing of each axis.
+
+The curve is drawn toward the side the ship lists to as positive heel. The dashed line marks
+the equilibrium heel.
+
+### Conditions (right)
+
+Each row is one condition. Tick its checkbox to include it; the result appears right away as
+**Satisfied**, **Not satisfied**, **N/A** (a value it needs is not defined, for example no
+vanishing angle within 90°) or **Error** (the script has a mistake). The checkbox in a group
+header turns every condition in that group on or off.
+
+Built-in conditions:
+
+| Group | Conditions |
+|---|---|
+| IMO IS Code 2008 (MSC.267(85), same limits as A.749(18)) | Area 0-30° ≥ 0.055 m·rad, Area 0-40° ≥ 0.09 m·rad, Area 30-40° ≥ 0.03 m·rad, GZ at 30° or more ≥ 0.2 m, angle of max GZ ≥ 25°, initial GM ≥ 0.15 m |
+| MARPOL Annex I Reg.28 | Equilibrium heel ≤ 25° (30° if the deck edge stays dry), range beyond equilibrium ≥ 20°, max residual GZ ≥ 0.1 m, area beyond equilibrium ≥ 0.0175 m·rad |
+| ICLL Reg.27 (Type A) | Same as MARPOL with a heel limit of 15° (17°) |
+| Constructions | GM by tangent at 0°, angle of vanishing stability (no pass/fail, for study) |
+
+- An intact case starts with the IMO conditions on; a damage case starts with MARPOL and ICLL
+  on. **Reset to default** goes back to that set.
+- The 40° limits use 40° or the angle of vanishing stability, whichever is less. Openings
+  (down-flooding points) are not modeled.
+- **Initial GM** is the slope of GZ at upright, so it already includes free surface and any
+  flooded compartments.
+
+### Details
+
+Click **Details** on a condition to open it below the list. It shows whether the condition is
+satisfied, the value of each check against its limit, and the condition's script line by
+line with the value each line produced. The GZ chart now draws that condition's construction
+(lines, points and shaded areas). Click a script line to highlight the parts of the drawing it
+depends on.
+
+**Edit condition** turns the name and the script into editable fields in place. The drawing
+and the result update as you type. **Save to conditions** stores the condition under **User**
+so you can reuse it in other projects on this computer.
+
+**+ Make new condition** starts an empty condition in edit mode.
+
+### Writing a condition
+
+Each condition is its own short script. For example:
+
+```
+area_min = 0.055
+a = area(GZ, hline(0), vline(0), vline(30))
+check("Area 0-30°", a >= area_min)
+```
+
+- `GZ` is the GZ curve (heel in degrees, GZ in metres) with the list side positive.
+  `GZ_SIGNED` is the raw curve (+ heel = starboard down).
+- Values from the run: `EQ_HEEL` (deg), `GM0` (m), `KG` (m), `DISP` (t), `DRAFT` (waterline
+  z, m), `TRIM` (deg), `DECK_EDGE_IMMERSED`, `DECK_EDGE_ANGLE` (deg), `FLOODED`, `LIST_SIDE`.
+  The edit view lists them with their current values.
+- Drawing and measuring: `vline`, `hline`, `point`, `seg`, `line`, `tangent`, `at`, `slope`,
+  `intersect` (needs exactly one crossing), `root` (first drop below zero), `peak`, `area`
+  (m·rad), `x`, `y`.
+- Helpers: `min`, `max`, `abs`, `deg2rad`, `rad2deg`, `ifna(value, fallback)`,
+  `ifelse(condition, a, b)`, comparisons and `and` / `or` / `not`.
+- `check("name", comparison)` records a pass/fail result with the actual and required values.
+- Angles are in degrees. Areas come back in m·rad and slopes in m/rad.
+
+Conditions and the curve fit are saved with the project.
 
 !!! warning "Sanity-check very light loading conditions"
     A loading condition far outside the hull's normal displacement range (for example, a
-    lightship weight with no cargo/ballast loaded at all) can push the equilibrium solver
-    into an extreme, physically implausible result, or fail to converge cleanly. If a run
-    produces a wildly deep draft or an oddly tilted 3D preview, check that your
-    [Loading](loading.md) condition's total weight is realistic for the hull before trusting
-    the result.
+    lightship weight with no cargo or ballast) can push the solver into a physically
+    implausible result or stop it from converging. If the draft looks far too deep or the 3D
+    preview is oddly tilted, check that the [Loading](loading.md) total weight is realistic
+    before trusting the result.

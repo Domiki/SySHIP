@@ -6,7 +6,7 @@
 
 ## Lightship
 
-- **Weight (t)**와 **CG X/Y/Z (m)**.
+- **Weight (t)**와 **CG X/Y/Z (m)**. 값은 Enter를 누르거나 다른 칸으로 이동할 때 반영되고, Escape를 누르면 이전 값으로 돌아갑니다.
 - DIMENSION design ship이 존재하고 무게가 아직 0이라면 **"Use DIMENSION estimate (N t)"** 버튼이 나타납니다 — 클릭 한 번으로 [DIMENSION → Principal Dimensions](../dimension/principal-dimensions.md)의 W<sub>s</sub>+W<sub>o</sub>+W<sub>m</sub> 값을 채웁니다.
 
 ## 구획 적재
@@ -16,7 +16,7 @@
 - **Fill (%)** — 선택한 모든 구획에 공통으로 적용되는 채움 비율입니다(선택된 구획들의 채움 비율이 다르면 "mixed"로 표시됩니다). 구획은 항상 바닥에서부터 채워집니다.
 - **Weight (t)**(여러 구획을 선택했다면 **Total weight (t)**) — 해당 채움 비율에 해당하는 무게입니다. 이 값을 직접 입력하면 채움 비율로 역산됩니다. 아래의 **Weight range: 0 – N t** 안내는 이 선택 범위가 담을 수 있는 최대치를 보여주며, 각 구획의 부피, **Reduction**, **Filling**, 카테고리 밀도로 계산됩니다([Volume](volume.md) 참고 — 100% 채움 시 loadable volume은 `volume × reduction × filling`이고, 그 무게는 이 부피에 카테고리 밀도를 곱한 값입니다).
 
-두 필드 모두 실시간으로 갱신되며 즉시 반영됩니다 — 별도의 Apply 버튼은 없습니다.
+두 필드 모두 Enter를 누르거나 다른 칸으로 이동할 때 반영됩니다 — 별도의 Apply 버튼은 없습니다.
 
 ## Summary
 

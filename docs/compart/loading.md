@@ -8,7 +8,8 @@ categorized compartment is, combining into a total weight and CG that
 
 ## Lightship
 
-- **Weight (t)** and **CG X/Y/Z (m)**.
+- **Weight (t)** and **CG X/Y/Z (m)**. A value is applied when you press Enter or move to
+  another field; Escape restores the previous value.
 - If a DIMENSION design ship exists and the weight is still 0, a **"Use DIMENSION estimate
   (N t)"** button appears — one click fills it with W<sub>s</sub>+W<sub>o</sub>+W<sub>m</sub>
   from [DIMENSION → Principal Dimensions](../dimension/principal-dimensions.md).
@@ -29,7 +30,8 @@ is active. With a selection made:
   [Volume](volume.md) — the loadable volume at 100% fill is `volume × reduction × filling`,
   and its weight is that volume × the category's density).
 
-Both fields update live and commit immediately — there's no separate Apply button.
+Both fields apply when you press Enter or move to another field — there's no separate Apply
+button.
 
 ## Summary
 
