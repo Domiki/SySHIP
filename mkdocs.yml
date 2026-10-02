@@ -56,6 +56,7 @@ plugins:
           build: true
           nav_translations:
             Home: 홈
+            Command Line: 명령줄
             Installation: 설치
             DIMENSION: DIMENSION
             Overview: 개요
@@ -105,4 +106,5 @@ nav:
       - Damage: compart/damage.md
       - Stability: compart/stability.md
       - Export: compart/export.md
+  - Command Line: cli.md
   - FAQ: faq.md

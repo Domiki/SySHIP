@@ -90,10 +90,15 @@ a bounding box with 8 corner handles you can pull in 3D:
    of the predicted shape is drawn in the 3D View while you're dragging a corner, before
    you apply.
 
+FFD can't change the hull's main dimensions: if the deformed hull would extend past (or pull
+back from) its current X, Y or Z extents by more than 0.5 mm — that is, change L, B or D — the
+deformation is refused with a message naming the extent. Use Length, Breadth or Depth Variation
+to change the main dimensions.
+
 The panel header's **&gt;** chevron collapses/expands the whole FFD section.
 
 ## Undo / Redo and Protection
 
 Every Variation "Apply" is a step in the same shared undo/redo history as Fairing edits —
-use the **Undo/Redo** buttons at the bottom of the panel (or the sticky footer's icons) to
+use the **Undo/Redo** buttons in the toolbar at the bottom of the left panel to
 step back through a chain of variations.

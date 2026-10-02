@@ -17,11 +17,15 @@ Click a **vertex** or a **face** on the hull surface in the 3D View to select it
 - **Vertex selected**: the panel shows its current X/Y/Z position and three **dx/dy/dz (m)**
   fields. Enter an offset and click **Apply**, or click-and-drag the vertex directly in the
   3D View (a dashed guide line and a live dX/dY/dZ tooltip follow your cursor while dragging).
-  A vertex that lies on the centerline (Y ≈ 0) has its **dy** locked to 0, so you can't
-  accidentally break hull symmetry — a note explains this whenever it applies.
+  For a vertex on the centerline (Y ≈ 0) the **dy** field is disabled, so you can't
+  accidentally break hull symmetry.
 - **Face selected**: double-click inside the highlighted face to **split** it (adds a vertex
   at the click point and re-triangulates), giving you finer control over that area for a
   subsequent vertex edit.
+
+Vertex moves and face splits can't change the hull's main dimensions: an edit that would move
+the hull's X, Y or Z extents by more than 0.5 mm (changing L, B or D) is refused, and a dragged
+vertex snaps back.
 
 Edits reshape the underlying surface mesh; the affected station/waterline/buttock lines,
 hydrostatics, and \(C_P\) curve all recompute automatically.
@@ -44,6 +48,6 @@ The legend (and the heatmap itself) only appears while the **Surface** layer is 
 
 ## Undo / Redo
 
-The **Undo** and **Redo** buttons at the bottom of the panel step back and forward through
+The **Undo** and **Redo** buttons in the toolbar at the bottom of the left panel step back and forward through
 every hull edit — vertex moves, face splits, and Variation/FFD applications alike share the
 same history.

@@ -115,7 +115,7 @@ check("Area 0-30°", a >= area_min)
 - `check("name", comparison)` records a pass/fail result with the actual and required values.
 - Angles are in degrees. Areas come back in m·rad and slopes in m/rad.
 
-Conditions and the curve fit are saved with the project.
+The seawater density, heel step, conditions and curve fit are saved with the project. They can also be set from the [command line](../cli.md).
 
 !!! warning "Sanity-check very light loading conditions"
     A loading condition far outside the hull's normal displacement range (for example, a

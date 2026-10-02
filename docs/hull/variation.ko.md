@@ -60,8 +60,10 @@ FFD는 변형 격자(lattice)를 이용해 국부 변형을 완전히 수동으�
 3. **Smoothing range (m)**과 Protection과 동일한 falloff curve 편집기로 변형이 lattice box 바깥으로 어떻게 감쇠하는지 조절합니다.
 4. **Apply**를 클릭하면 변형이 선체 표면에 반영됩니다. 적용 전, 코너를 드래그하는 동안 예상되는 형상이 3D View에 실시간 와이어프레임 미리보기로 표시됩니다.
 
+FFD로는 주요 치수를 바꿀 수 없습니다. 변형한 선체가 현재 X, Y, Z 범위를 0.5 mm 넘게 벗어나거나 줄어들면(L, B, D가 바뀌면) 어느 범위가 바뀌는지 알려주고 적용하지 않습니다. 주요 치수는 Length, Breadth, Depth Variation으로 바꾸세요.
+
 패널 헤더의 **&gt;** 화살표로 FFD 섹션 전체를 접고 펼 수 있습니다.
 
 ## Undo / Redo와 Protection
 
-모든 Variation "Apply"는 Fairing 편집과 동일한 공유 undo/redo 이력의 한 단계입니다 — 패널 하단(또는 하단 고정 바 아이콘)의 **Undo/Redo** 버튼으로 변형 체인을 되돌릴 수 있습니다.
+모든 Variation "Apply"는 Fairing 편집과 동일한 공유 undo/redo 이력의 한 단계입니다 — 왼쪽 패널 맨 아래 도구 막대의 **Undo/Redo** 버튼으로 변형 체인을 되돌릴 수 있습니다.
