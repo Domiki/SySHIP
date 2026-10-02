@@ -22,7 +22,7 @@ Stability는 [Loading](loading.md) 탭의 총중량과 결합 무게중심을 �
 
 ## 2. GZ Curve
 
-**Heel step (deg)**(기본값 1°, 0.25°~90°)을 정하고 **Run GZ Curve**를 누르면, trim을 자유롭게 두고 heel을 -90°(port)부터 90°(starboard)까지 계산합니다. 간격이 작을수록 곡선이 정확해지지만 시간이 더 걸립니다.
+**Heel step (deg)**(기본값 5°, 0.25°~90°)을 정하고 **Run GZ Curve**를 누르면, trim을 자유롭게 두고 heel을 -90°(port)부터 90°(starboard)까지 계산합니다. 간격이 작을수록 곡선이 정확해지지만 시간이 더 걸립니다.
 
 **View Details**를 누르면 **Stability criteria** 창이 열립니다.
 
@@ -54,7 +54,7 @@ Stability는 [Loading](loading.md) 탭의 총중량과 결합 무게중심을 �
 | ICLL Reg.27 (Type A) | MARPOL과 같고 heel 한계만 15°(17°) |
 | Constructions | 0°에서의 접선으로 구한 GM, 소실각(판정 없음, 학습용) |
 
-- 비손상 케이스는 IMO 조건이, 손상 케이스는 MARPOL과 ICLL 조건이 켜진 상태로 시작합니다. **Reset to default**로 이 상태로 돌아갑니다.
+- 비손상 케이스는 IMO 조건이, 손상 케이스는 MARPOL과 ICLL 조건이 켜진 상태로 시작하고, 라이브러리에서 `@default`로 표시한 규정도 함께 켜집니다. **Reset to default**로 이 상태로 돌아갑니다.
 - 40° 기준은 40°와 소실각 중 작은 값을 씁니다. 개구부(침수점)는 모델링하지 않습니다.
 - **Initial GM**은 똑바로 선 상태에서 GZ의 기울기이므로, 자유수면과 침수 구획의 영향이 이미 들어 있습니다.
 
@@ -62,9 +62,46 @@ Stability는 [Loading](loading.md) 탭의 총중량과 결합 무게중심을 �
 
 조건의 **Details**를 누르면 목록 아래에 그 조건이 열립니다. 만족 여부, 각 판정의 값과 기준값, 그리고 조건 스크립트를 줄마다 계산된 값과 함께 보여줍니다. 이때 GZ 차트에는 그 조건의 작도(선, 점, 면적)가 그려집니다. 스크립트 줄을 누르면 그 줄과 관련된 작도가 강조됩니다.
 
-**Edit condition**을 누르면 같은 자리에서 이름과 스크립트를 바로 고칠 수 있습니다. 입력하는 대로 작도와 결과가 갱신됩니다. **Save to conditions**로 저장하면 **User** 그룹에 들어가서, 이 컴퓨터의 다른 프로젝트에서도 다시 쓸 수 있습니다.
+**Edit condition**을 누르면 같은 자리에서 이름과 스크립트를 바로 고칠 수 있습니다. 입력하는 대로 작도와 결과가 갱신됩니다. **Save to conditions**로 저장하면 규정 라이브러리에 들어가서, 이 컴퓨터의 다른 프로젝트에서도 다시 쓸 수 있습니다.
+
+- 라이브러리에 있는 규정과 같은 이름으로 저장하면 그 규정을 덮어씁니다. 기본 규정은 원본이 따로 보존되고, 목록에 **edited ↺** 표시가 붙습니다. 이 표시를 누르면 원래 스크립트로 돌아갑니다.
+- 새 이름으로 저장하면 **User** 그룹에 추가됩니다.
 
 **+ Make new condition**은 빈 조건을 편집 상태로 만듭니다.
+
+### 규정 라이브러리와 .rule 파일
+
+켤 수 있는 조건은 규정 라이브러리에서 옵니다. SySHIP에 들어 있는 기본 규정과, 직접 만들거나 가져온 규정입니다. 규정은 `.rule` 텍스트 파일로 저장됩니다.
+
+- **Import...**: 하나 이상의 `.rule` 파일에 있는 규정을 추가합니다. 예를 들어 동료가 내보낸 규정 묶음을 가져올 수 있습니다. 같은 그룹에 같은 이름의 규정이 이미 있으면 가져오지 않으니, 파일에서 이름을 바꾼 뒤 다시 가져오세요.
+- 그룹의 **Export**: 그 그룹의 규정을 `.rule` 파일 하나로 저장해 공유할 수 있습니다. 규정 하나만 내보내려면 그 줄에 마우스를 올리고 **⤓**를 누르세요.
+- **Restore built-in rules**: 고친 기본 규정을 모두 원본으로 되돌립니다. 원본은 바뀌지 않으므로 언제든 되돌릴 수 있습니다.
+- 직접 만든 규정의 **×**(꺼져 있을 때 보임): 그 규정을 지웁니다.
+
+직접 만든 규정은 SySHIP 사용자 데이터 폴더의 `rules` 폴더에 저장됩니다(Windows는 `%APPDATA%\SySHIP\rules`, macOS는 `~/Library/Application Support/SySHIP/rules`). 그룹마다 폴더가 있고, 규정 하나가 `.rule` 파일 하나입니다(예: `rules/User/My GZ check.rule`, `rules/Owner spec/GM 0.5.rule`). 여러 규정이 든 파일을 가져오면 규정별 파일로 나뉘어 저장됩니다. 기본 규정을 고친 내용은 `rules/_edited-builtins`에 규정마다 따로 저장됩니다. 규정에 마우스를 올리면 해당 파일 위치가 보입니다.
+
+`.rule` 파일은 일반 텍스트입니다. `@`로 시작하는 줄은 규정의 정보이고, 나머지 줄은 바로 위 규정의 스크립트입니다.
+
+```
+# SySHIP stability rules
+@group Owner spec
+@edition Owner specification rev. 2
+
+@rule GM 0.5
+@description Initial GM of at least 0.5 m.
+@default intact
+gm_min = 0.5  # m
+check("GM 0.5", GM0 >= gm_min)
+```
+
+| 줄 | 의미 |
+|---|---|
+| `@group` | 목록에 보이는 그룹. 첫 `@rule`보다 앞에 쓰면 파일 전체에 적용됩니다. |
+| `@edition` | 툴팁에 보이는 판(edition)이나 출처. |
+| `@rule` | 규정의 시작. 줄의 나머지가 규정 이름입니다. |
+| `@description` | 툴팁 설명. |
+| `@default intact` / `@default damage` | **Reset to default** 때 비손상 또는 손상 케이스에서 켜집니다. |
+| `@id` | 내보낸 기본 규정에만 있습니다. 이런 파일을 가져오면 해당 기본 규정의 스크립트를 바꾸며, 언제든 원본으로 되돌릴 수 있습니다. |
 
 ### 조건 작성하기
 

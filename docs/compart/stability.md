@@ -31,7 +31,7 @@ equilibrium attitude with an opaque sea surface at the equilibrium waterline.
 
 ## 2. GZ Curve
 
-Set the **Heel step (deg)** (default 1°, from 0.25° to 90°) and click **Run GZ Curve**. The
+Set the **Heel step (deg)** (default 5°, from 0.25° to 90°) and click **Run GZ Curve**. The
 heel is swept from -90° (port) to 90° (starboard) with free trim. A smaller step gives a
 more accurate curve but takes longer.
 
@@ -72,7 +72,8 @@ Built-in conditions:
 | Constructions | GM by tangent at 0°, angle of vanishing stability (no pass/fail, for study) |
 
 - An intact case starts with the IMO conditions on; a damage case starts with MARPOL and ICLL
-  on. **Reset to default** goes back to that set.
+  on, together with any library rule marked `@default`. **Reset to default** goes back to
+  that set.
 - The 40° limits use 40° or the angle of vanishing stability, whichever is less. Openings
   (down-flooding points) are not modeled.
 - **Initial GM** is the slope of GZ at upright, so it already includes free surface and any
@@ -87,10 +88,59 @@ line with the value each line produced. The GZ chart now draws that condition's 
 depends on.
 
 **Edit condition** turns the name and the script into editable fields in place. The drawing
-and the result update as you type. **Save to conditions** stores the condition under **User**
-so you can reuse it in other projects on this computer.
+and the result update as you type. **Save to conditions** stores the condition in the rule
+library so you can reuse it in other projects on this computer:
+
+- Under the same name as a library rule, it overwrites that rule. A built-in rule keeps its
+  original, and the row shows **edited ↺**: click it to go back to the original script.
+- Under a new name, it is added to the **User** group.
 
 **+ Make new condition** starts an empty condition in edit mode.
+
+### Rule library and .rule files
+
+The conditions you can turn on come from the rule library: the built-in rules that ship with
+SySHIP, plus your own and imported rules. Rules are stored as `.rule` text files.
+
+- **Import...** adds the rules of one or more `.rule` files, for example a set a colleague
+  exported. A rule that is already in the library under the same group and name is refused,
+  so rename it in the file first.
+- **Export** on a group saves that group's rules to one `.rule` file to share. To export a
+  single rule, point at its row and click **⤓**.
+- **Restore built-in rules** puts every edited built-in rule back to its original. The
+  originals are never changed, so this always works.
+- **×** on a rule of your own (shown when it is turned off) deletes it.
+
+Your rules are kept in the `rules` folder of the SySHIP user data folder
+(`%APPDATA%\SySHIP\rules` on Windows, `~/Library/Application Support/SySHIP/rules` on macOS),
+with one `.rule` file per rule in a folder per group, for example
+`rules/User/My GZ check.rule` or `rules/Owner spec/GM 0.5.rule`. Importing a file that holds
+several rules splits it into one file per rule. Edits to built-in rules are kept separately in
+`rules/_edited-builtins`, one file per edited rule. Hover over a rule to see its file.
+
+A `.rule` file is plain text: lines starting with `@` describe the rules, and every other
+line is part of the script of the rule above it.
+
+```
+# SySHIP stability rules
+@group Owner spec
+@edition Owner specification rev. 2
+
+@rule GM 0.5
+@description Initial GM of at least 0.5 m.
+@default intact
+gm_min = 0.5  # m
+check("GM 0.5", GM0 >= gm_min)
+```
+
+| Line | Meaning |
+|---|---|
+| `@group` | Group shown in the list. Before the first `@rule` it applies to the whole file. |
+| `@edition` | Edition or source shown in the tooltip. |
+| `@rule` | Starts a rule; the rest of the line is its name. |
+| `@description` | Tooltip text. |
+| `@default intact` / `@default damage` | Turned on by **Reset to default** for intact or damage cases. |
+| `@id` | Only in exported built-in rules. Importing such a file replaces that built-in rule's script, and it can still be restored. |
 
 ### Writing a condition
 
