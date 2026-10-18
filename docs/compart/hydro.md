@@ -18,8 +18,8 @@ there and re-import.
   outside-of-plating envelope without actually re-meshing it. Leave it at 0 to treat the
   modeled surface as the outer shell.
 - **Draft**, **Trim**, **Heel** — each a **start / step / end** range (Draft and Trim in m,
-  Heel in degrees). Trim and Heel default to 0/0/0 (upright, even keel) if you only care
-  about draft.
+  Heel in degrees; + heel = starboard down, matching [Stability](stability.md)'s GZ curve).
+  Trim and Heel default to 0/0/0 (upright, even keel) if you only care about draft.
 - **Hydrostatic Values** — a checkbox grid of every available field, all checked by default:
   Volume (Moulded and Extreme), Displacement (Moulded and Extreme), LCB (overall, forward-half,
   aft-half), LCF, VCB, TCB, transverse and longitudinal moments of inertia
