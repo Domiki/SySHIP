@@ -13,10 +13,10 @@ Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 �
 | **Box** | Min (x,y,z), Max (x,y,z), 모두 m 단위 | 축에 정렬된 박스입니다. |
 | **Cylinder** | Radius (m), Point 1 (x,y,z), Point 2 (x,y,z) | 두 점을 잇는 원기둥입니다. |
 | **Plane** | Axis (X/Y/Z), Position (m) | 선택한 축에 수직인 절단 평면으로, 현재 선체의 범위에 맞춰집니다. |
-| **Skinsurf** | Num points, Axis, 하나 이상의 **폴리라인** | 2개 이상의 폴리라인을 통과하는 곡면을 로프트합니다. 폴리라인은 이 패널 안에서 직접 입력합니다(아래 참고). |
+| **Skinned surface** | Num points, Axis, 하나 이상의 **폴리라인** | 2개 이상의 폴리라인을 통과하는 곡면을 로프트합니다. 폴리라인은 이 패널 안에서 직접 입력합니다(아래 참고). |
 | **Load** | STL 파일 | 외부 STL 파일을 새로운 구획 형상으로 임포트합니다. |
 
-**Skinsurf**는 더 이상 별도의 polyline mesh가 필요하지 않습니다: **Num points**(단면마다 몇 개의 2D 점을 가질지)와 단면들이 쌓이는 **Axis**를 설정한 뒤, **+ Add polyline**으로 단면을 추가합니다 — 각 단면은 해당 축 위의 **Position (m)**과 (a, b) 점들의 행을 갖습니다. 어떤 폴리라인의 박스를 클릭하면 그 폴리라인이 활성화되어 실시간 미리보기에 표시됩니다. 프로필들은 위치 순서대로 자동 정렬되어 로프트됩니다. 모든 프로필은 점 개수가 같아야 하며, 각각 서로 다른 위치를 가져야 합니다. 직접 입력하는 대신 Mesh List의 **Lines** 탭에 있는 line 값을 이 숫자 필드(Position, 또는 점의 좌표) 위로 드래그해서 채울 수도 있습니다.
+**Skinned surface**는 더 이상 별도의 polyline mesh가 필요하지 않습니다: **Num points**(단면마다 몇 개의 2D 점을 가질지)와 단면들이 쌓이는 **Axis**를 설정한 뒤, **+ Add polyline**으로 단면을 추가합니다 — 각 단면은 해당 축 위의 **Position (m)**과 (a, b) 점들의 행을 갖습니다. 어떤 폴리라인의 박스를 클릭하면 그 폴리라인이 활성화되어 실시간 미리보기에 표시됩니다. 프로필들은 위치 순서대로 자동 정렬되어 로프트됩니다. 모든 프로필은 점 개수가 같아야 하며, 각각 서로 다른 위치를 가져야 합니다. 직접 입력하는 대신 Mesh List의 **Lines** 탭에 있는 line 값을 이 숫자 필드(Position, 또는 점의 좌표) 위로 드래그해서 채울 수도 있습니다.
 
 ![Box 생성 전 미리보기](../assets/screenshots/compart-modeling-create-box-preview.png)
 
@@ -33,21 +33,21 @@ Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 �
 | 연산 | 드롭 박스 | 효과 |
 |---|---|---|
 | **Union** | Meshes (2개 이상) | 드롭한 모든 mesh를 하나로 합칩니다. 원본은 제거됩니다. |
-| **Intersect** | Meshes (2개 이상) | 드롭한 모든 mesh에 공통된 부피만 남깁니다. |
-| **Subtract** | Targets, Cutters | 모든 Target에서 모든 Cutter의 부피를 제거합니다. 두 박스 모두 **watertight**(닫힌) mesh만 받습니다. |
+| **Intersection** | Meshes (2개 이상) | 드롭한 모든 mesh에 공통된 부피만 남깁니다. |
+| **Subtraction** | Targets, Cutters | 모든 Target에서 모든 Cutter의 부피를 제거합니다. 두 박스 모두 **watertight**(닫힌) mesh만 받습니다. |
 | **Split** | Targets, Cutters | 각 Cutter(닫힌 mesh 또는 Plane)가 지나가는 곳을 기준으로 각 Target을 분할하여 새 조각을 만듭니다. cutter가 완전히 관통하지 않는 target은 분할되지 않습니다. Target은 watertight여야 하며, cutter는 (Plane처럼) 열려 있어도 됩니다. |
-| **Transform** | Meshes | 드롭한 모든 mesh에 Translate/Rotate/Scale과, 필요시 Mirror를 적용합니다(아래 참고). watertight가 아닌 mesh도 여기서는 허용됩니다. |
+| **Transformation** | Meshes | 드롭한 모든 mesh에 Translate/Rotate/Scale과, 필요시 Mirror를 적용합니다(아래 참고). watertight가 아닌 mesh도 여기서는 허용됩니다. |
 
 닫힌 mesh가 필요한 연산에 watertight가 아닌 mesh를 드롭하면, 어떤 mesh가 실패했는지 알려주는 오류가 표시되며 거부됩니다.
 
-**Transform**의 필드(mesh를 하나 이상 드롭한 이후):
+**Transformation**의 필드(mesh를 하나 이상 드롭한 이후):
 
 - **Translate (m)** — dx/dy/dz.
 - **Rotate (degrees, about the origin)** — 각 축을 기준으로 회전합니다.
 - **Scale (factor, 1 = no change)** — 축별 배율입니다.
 - **Mirror** — 지정한 축의 특정 위치를 기준으로 mesh를 반사합니다(m).
 
-연산 버튼(선택한 연산의 이름이 표시됨)을 클릭해 실행하거나, **Cancel**로 드롭 박스를 비우고 취소할 수 있습니다.
+**Apply**를 클릭해 선택한 연산을 실행하거나, **Cancel**로 드롭 박스를 비우고 취소할 수 있습니다.
 
 개별 mesh의 이름 변경·복제·삭제는 여기서 하지 않습니다 — **Mesh List**에서 하나 이상의 행을 선택한 뒤 우클릭하면 나오는 **Rename / Copy / Delete** 컨텍스트 메뉴를 사용하세요.
 

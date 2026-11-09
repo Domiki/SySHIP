@@ -16,10 +16,10 @@ Plane show a **live preview** in the 3D View as you type, before you commit them
 | **Box** | Min (x,y,z), Max (x,y,z), all in m | Axis-aligned box. |
 | **Cylinder** | Radius (m), Point 1 (x,y,z), Point 2 (x,y,z) | A cylinder running between the two points. |
 | **Plane** | Axis (X/Y/Z), Position (m) | A cutting plane perpendicular to the chosen axis, sized to the current hull's bounds. |
-| **Skinsurf** | Num points, Axis, one or more **polylines** | Lofts a surface through 2 or more polylines, entered directly in this panel (see below). |
+| **Skinned surface** | Num points, Axis, one or more **polylines** | Lofts a surface through 2 or more polylines, entered directly in this panel (see below). |
 | **Load** | STL file | Imports an arbitrary external STL as a new compartment shape. |
 
-**Skinsurf** no longer needs separate polyline meshes: set **Num points** (how many 2D points
+**Skinned surface** no longer needs separate polyline meshes: set **Num points** (how many 2D points
 each cross-section has) and the **Axis** the profiles are stacked along, then **+ Add
 polyline** to add a cross-section — each one gets a **Position (m)** along that axis and a
 row of (a, b) point fields. Click a polyline's box to make it the active one shown in the
@@ -44,23 +44,23 @@ box(es) that appear (you can select and drag several meshes at once):
 | Operation | Drop boxes | Effect |
 |---|---|---|
 | **Union** | Meshes (2+) | Combines all dropped meshes into one; the originals are removed. |
-| **Intersect** | Meshes (2+) | Keeps only the volume common to every dropped mesh. |
-| **Subtract** | Targets, Cutters | Removes every Cutter's volume from every Target. Both boxes only accept **watertight** meshes. |
+| **Intersection** | Meshes (2+) | Keeps only the volume common to every dropped mesh. |
+| **Subtraction** | Targets, Cutters | Removes every Cutter's volume from every Target. Both boxes only accept **watertight** meshes. |
 | **Split** | Targets, Cutters | Splits each Target wherever a Cutter (a closed mesh *or* a Plane) passes through it, producing new pieces; a target that a cutter doesn't fully cross isn't split. Targets must be watertight; cutters may be open (e.g. a Plane). |
-| **Transform** | Meshes | Applies Translate/Rotate/Scale, and optionally a Mirror, to every dropped mesh (see below). Non-watertight meshes are allowed here. |
+| **Transformation** | Meshes | Applies Translate/Rotate/Scale, and optionally a Mirror, to every dropped mesh (see below). Non-watertight meshes are allowed here. |
 
 Dropping a non-watertight mesh where the operation requires a closed one is rejected with an
 error naming which mesh(es) failed.
 
-**Transform** fields, once at least one mesh is dropped:
+**Transformation** fields, once at least one mesh is dropped:
 
 - **Translate (m)** — dx/dy/dz.
 - **Rotate (degrees, about the origin)** — around each axis.
 - **Scale (factor, 1 = no change)** — per axis.
 - **Mirror** — reflects the mesh(es) across a chosen axis at a given position (m).
 
-Click the operation's button (its label matches the chosen operation) to run it, or
-**Cancel** to back out and clear the drop boxes.
+Click **Apply** to run the chosen operation, or **Cancel** to back out and clear the drop
+boxes.
 
 Renaming, copying, and deleting individual meshes isn't done here — right-click one or more
 selected rows in the **Mesh List** for a **Rename / Copy / Delete** context menu instead.

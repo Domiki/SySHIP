@@ -11,7 +11,7 @@ including every Fairing/Variation edit applied so far. Enabled once station line
 
 ## Export Lines
 
-Downloads `hull_lines.zip`, containing a DXF drawing for each of the three lines-plan
+Downloads `<imported file>_lines.zip` (for example `kvlcc_lines.zip`), containing a DXF drawing for each of the three lines-plan
 views (Body / Water / Sheer Plan). Each DXF is flattened onto its own 2D plane (so it opens
 correctly, right-side-up, in any DXF viewer — not just ones that default to a 3D top-down
 view) and uses simple `POLYLINE`/`VERTEX` entities for maximum compatibility with older CAD

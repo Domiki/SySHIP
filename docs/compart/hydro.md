@@ -12,19 +12,20 @@ there and re-import.
 
 ## Setting up the sweep
 
-- **Shell thickness (mm)** — an optional plating allowance added to the modeled (moulded)
-  hull surface. It only affects the **Extreme** fields (below): Volume/Displacement Extreme =
-  the moulded value plus wetted surface area × this thickness, approximating the hull's
-  outside-of-plating envelope without actually re-meshing it. Leave it at 0 to treat the
-  modeled surface as the outer shell.
-- **Draft**, **Trim**, **Heel** — each a **start / step / end** range (Draft and Trim in m,
+- **Shell plate thickness (mm)** — an optional plating allowance added to the modeled
+  (moulded) hull surface. It only affects the **Extreme** fields (below): Volume/Displacement
+  Extreme = the moulded value plus wetted surface area × this thickness, approximating the
+  hull's outside-of-plating envelope without actually re-meshing it. Leave it at 0 to treat
+  the modeled surface as the outer shell.
+- **Draft**, **Trim**, **Heel** — each a **Start / Step / End** range (Draft and Trim in m,
   Heel in degrees; + heel = starboard down, matching [Stability](stability.md)'s GZ curve).
   Trim and Heel default to 0/0/0 (upright, even keel) if you only care about draft.
 - **Hydrostatic Values** — a checkbox grid of every available field, all checked by default:
-  Volume (Moulded and Extreme), Displacement (Moulded and Extreme), LCB (overall, forward-half,
-  aft-half), LCF, VCB, TCB, transverse and longitudinal moments of inertia
+  Volume (moulded and extreme), Displacement (moulded and extreme), LCB (overall, fore body,
+  after body), LCF, VCB, TCB, transverse and longitudinal moments of inertia
   (I<sub>T</sub>/I<sub>L</sub>), BM<sub>T</sub>/KM<sub>T</sub>, BM<sub>L</sub>/KM<sub>L</sub>,
-  MTC, TPC, WSA, A<sub>WP</sub>, A<sub>M</sub>, C<sub>B</sub>/C<sub>WP</sub>/C<sub>M</sub>/C<sub>P</sub>,
+  KN (the horizontal distance from K to B once heeled), MTC, TPC, wetted surface area,
+  A<sub>WP</sub>, A<sub>M</sub>, C<sub>B</sub>/C<sub>P</sub>/C<sub>M</sub>/C<sub>WP</sub>/C<sub>VP</sub>,
   and Trim.
 
 ![Hydro tab, sweep set up](../assets/screenshots/compart-hydro-form.png)
