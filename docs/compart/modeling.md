@@ -1,6 +1,6 @@
-# Modeling
+# Compartment Modeling
 
-Modeling is where compartments and tanks actually get built — as solid shapes you create,
+Compartment Modeling is where compartments and tanks actually get built — as solid shapes you create,
 combine, cut, and transform. It has three inner tabs: **Create**, **Operation**, and
 **Script**.
 
@@ -17,7 +17,7 @@ Plane show a **live preview** in the 3D View as you type, before you commit them
 | **Cylinder** | Radius (m), Point 1 (x,y,z), Point 2 (x,y,z) | A cylinder running between the two points. |
 | **Plane** | Axis (X/Y/Z), Position (m) | A cutting plane perpendicular to the chosen axis, sized to the current hull's bounds. |
 | **Skinned surface** | Num points, Axis, one or more **polylines** | Lofts a surface through 2 or more polylines, entered directly in this panel (see below). |
-| **Load** | STL file | Imports an arbitrary external STL as a new compartment shape. |
+| **Load mesh** | STL file | Imports an arbitrary external STL as a new compartment shape. |
 
 **Skinned surface** no longer needs separate polyline meshes: set **Num points** (how many 2D points
 each cross-section has) and the **Axis** the profiles are stacked along, then **+ Add

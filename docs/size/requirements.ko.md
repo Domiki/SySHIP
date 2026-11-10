@@ -1,8 +1,8 @@
 # Requirements
 
-![Requirements 탭](../assets/screenshots/dimension-requirements.png)
+![Requirements 탭](../assets/screenshots/size-requirements.png)
 
-Requirements에서는 오너 요구사항과, DIMENSION 전체의 경험적 스케일링·계수 산정 기준이 되는 **parent ship**(비교 대상이 되는 기존 유사선)의 상세 제원을 입력합니다. 여기서 parent ship이 설정되기 전까지는 DIMENSION의 나머지 기능이 동작하지 않습니다.
+Requirements에서는 오너 요구사항과, SIZE 전체의 경험적 스케일링·계수 산정 기준이 되는 **parent ship**(비교 대상이 되는 기존 유사선)의 상세 제원을 입력합니다. 여기서 parent ship이 설정되기 전까지는 SIZE의 나머지 기능이 동작하지 않습니다.
 
 ## Load from JSON file
 

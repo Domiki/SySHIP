@@ -1,6 +1,6 @@
 # Freeboard
 
-![Freeboard tab](../assets/screenshots/dimension-freeboard.png)
+![Freeboard tab](../assets/screenshots/size-freeboard.png)
 
 Computes the vessel's statutory minimum freeboard under the **International Convention on
 Load Lines (ICLL) 1966, Type A** rules — the rule set for tankers and other liquid-cargo

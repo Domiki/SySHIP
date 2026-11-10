@@ -1,6 +1,6 @@
 # Optimize
 
-![Optimize 탭](../assets/screenshots/dimension-optimize.png)
+![Optimize 탭](../assets/screenshots/size-optimize.png)
 
 건현 규정과 합리적인 프루드수 범위를 만족시키면서, 선택한 목적함수를 가장 잘 만족하는 조합을 찾기 위해 두 개의 자유 제원비율 — L/B와, carrier type에 따라 C<sub>B</sub>(deadweight carrier) 또는 B/D(volume carrier) — 를 자동으로 탐색합니다.
 

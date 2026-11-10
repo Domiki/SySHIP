@@ -1,4 +1,4 @@
-# Hydro
+# Hydrostatics
 
 배수량, 부력/부심 중심, 메타센터 높이, 형상 계수 등 흘수/트림/힐 스윕에 걸친 주요 정수계산(hydrostatics) 값들의 표를 계산합니다. 전형적인 선박의 "정수계산 표와 곡선"으로, HULL 탭의 Properties 패널(단면선으로부터 하나의 흘수에 대한 값만 계산)과 달리 실제 COMPART 선체 mesh 위에서 직접 계산됩니다.
 
@@ -6,15 +6,16 @@
 
 ## 스윕 설정하기
 
+- **Seawater density (ton/m³)** — 배수 부피를 Displacement, TPC, MTC로 바꿀 때 쓰는 밀도입니다(기본값 1.025). Shell plate thickness 위에 있으며 프로젝트에 함께 저장되고 [Stability Evaluation](stability.md)에서도 같은 값을 사용합니다. 예전에는 Stability 탭에서 설정했습니다.
 - **Shell plate thickness (mm)** — 모델링된(moulded) 선체 표면에 더할 선택적인 외판 두께입니다. 아래의 **Extreme** 값에만 영향을 줍니다: Volume/Displacement Extreme = moulded 값 + 침수 표면적 × 이 두께로, mesh를 다시 만들지 않고도 외판 바깥쪽 외피를 근사합니다. 모델링된 표면 자체를 외피로 취급하려면 0으로 둡니다.
-- **Draft**, **Trim**, **Heel** — 각각 **Start / Step / End** 범위입니다(Draft와 Trim은 m, Heel은 deg이고, + heel은 [Stability](stability.md)의 GZ 곡선과 같이 starboard 쪽으로 기울어짐을 뜻합니다). 흘수만 신경 쓴다면 Trim과 Heel은 기본값 0/0/0(직립, 등흘수)으로 둡니다.
+- **Draft**, **Trim**, **Heel** — 각각 **Start / Step / End** 범위입니다(Draft와 Trim은 m, Heel은 deg이고, + heel은 [Stability Evaluation](stability.md)의 GZ 곡선과 같이 starboard 쪽으로 기울어짐을 뜻합니다). 흘수만 신경 쓴다면 Trim과 Heel은 기본값 0/0/0(직립, 등흘수)으로 둡니다.
 - **Hydrostatic Values** — 사용 가능한 모든 항목의 체크박스 목록으로, 기본적으로 전부 체크되어 있습니다: Volume(moulded와 extreme), Displacement(moulded와 extreme), LCB(전체, fore body, after body), LCF, VCB, TCB, 횡/종 관성모멘트(I<sub>T</sub>/I<sub>L</sub>), BM<sub>T</sub>/KM<sub>T</sub>, BM<sub>L</sub>/KM<sub>L</sub>, KN(heel 상태에서 K부터 B까지의 수평 거리), MTC, TPC, wetted surface area, A<sub>WP</sub>, A<sub>M</sub>, C<sub>B</sub>/C<sub>P</sub>/C<sub>M</sub>/C<sub>WP</sub>/C<sub>VP</sub>, Trim.
 
-![스윕을 설정한 Hydro 탭](../assets/screenshots/compart-hydro-form.png)
+![스윕을 설정한 Hydrostatics 탭](../assets/screenshots/compart-hydro-form.png)
 
 **Calculate**를 클릭합니다.
 
-![계산 후의 Hydro 탭](../assets/screenshots/compart-hydro-calculated.png)
+![계산 후의 Hydrostatics 탭](../assets/screenshots/compart-hydro-calculated.png)
 
 ## 결과 보기
 

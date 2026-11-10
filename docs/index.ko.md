@@ -6,7 +6,7 @@ SySHIP은 초기 설계 단계의 조선 설계 작업을 위한 데스크톱 �
 
 | 탭 | 용도 |
 |---|---|
-| [**DIMENSION**](dimension/index.md) | 오너 요구사항과 parent ship을 바탕으로 신조선을 사이징합니다: 주요 제원, 건현, 저항/추진기, 엔진 선정, 자동 최적화. |
+| [**SIZE**](size/index.md) | 오너 요구사항과 parent ship을 바탕으로 신조선을 사이징합니다: 주요 제원, 건현, 저항/추진기, 엔진 선정, 자동 최적화. |
 | **HULL** | STL 선체 표면을 임포트하고 스케일/방향을 맞춘 뒤 라인 도면을 생성하고, [Variation](hull/variation.md)과 [Fairing](hull/fairing.md)으로 형상을 다듬고, STL/DXF로 [내보내기](hull/export.md)합니다. |
 | **COMPART** | 임포트한 선체 내부에 구획/탱크를 만들고 정수력학, 탱크 용적, 적하, 손상, 복원성 계산을 수행합니다 — 자세한 내용은 [COMPART 개요](compart/index.md)를 참고하세요. |
 

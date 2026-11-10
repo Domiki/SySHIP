@@ -1,11 +1,11 @@
 # Requirements
 
-![Requirements tab](../assets/screenshots/dimension-requirements.png)
+![Requirements tab](../assets/screenshots/size-requirements.png)
 
 Requirements is where you enter the owner's stated requirements and the full particulars
 of a **parent ship** — a similar, already-known reference vessel that SySHIP uses as the
-empirical basis for scaling and coefficient estimation throughout DIMENSION. Nothing in the
-rest of DIMENSION works until a parent ship is set here.
+empirical basis for scaling and coefficient estimation throughout SIZE. Nothing in the
+rest of SIZE works until a parent ship is set here.
 
 ## Load from JSON file
 

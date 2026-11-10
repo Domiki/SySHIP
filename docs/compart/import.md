@@ -12,11 +12,11 @@ which one to use; with just one, it proceeds immediately.
 This:
 
 - Imports the chosen hull as a mesh named **"Hull"** (and keeps a separate, untouched copy of
-  it around for [Export](export.md)'s "Export Hull STL" and for [Stability](stability.md)'s
+  it around for [Export](export.md)'s "Export Hull STL" and for [Stability Evaluation](stability.md)'s
   damage-extent reference table).
 - Snapshots the hull's current station/waterline/buttock lines and its AP/FP positions, and
   its principal dimensions, into the COMPART project — the lines are visible read-only under
-  the **Lines** tab of the Mesh List, and both are what [Modeling](modeling.md) scripts
+  the **Lines** tab of the Mesh List, and both are what [Compartment Modeling](modeling.md) scripts
   reference through `$LOA`/`$LBP`/.../`$ST5`/`$WL7`/etc.
 
 If a COMPART project already exists, **New from HULL** first asks you to confirm — it

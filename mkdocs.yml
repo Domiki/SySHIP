@@ -58,7 +58,7 @@ plugins:
             Home: 홈
             Command Line: 명령줄
             Installation: 설치
-            DIMENSION: DIMENSION
+            SIZE: SIZE
             Overview: 개요
             Requirements: 요구사항
             Principal Dimensions: 주요 제원
@@ -72,25 +72,25 @@ plugins:
             Variation: 배리에이션
             Export: 내보내기
             COMPART: COMPART
-            Modeling: 모델링
-            Hydro: 정수력학
-            Volume: 용적
-            Loading: 적하
-            Damage: 손상
-            Stability: 복원성
+            Hydrostatics: 정수력학
+            Compartment Modeling: 구획 모델링
+            Cargo Definitions: 화물 정의
+            Loading Conditions: 적하 조건
+            Damage Conditions: 손상 조건
+            Stability Evaluation: 복원성 평가
             FAQ: 자주 묻는 질문
 
 nav:
   - Home: index.md
   - Installation: installation.md
-  - DIMENSION:
-      - Overview: dimension/index.md
-      - Requirements: dimension/requirements.md
-      - Principal Dimensions: dimension/principal-dimensions.md
-      - Freeboard: dimension/freeboard.md
-      - Resistance & Propeller: dimension/resistance-propeller.md
-      - Engine Selection: dimension/engine-selection.md
-      - Optimize: dimension/optimize.md
+  - SIZE:
+      - Overview: size/index.md
+      - Requirements: size/requirements.md
+      - Principal Dimensions: size/principal-dimensions.md
+      - Freeboard: size/freeboard.md
+      - Resistance & Propeller: size/resistance-propeller.md
+      - Engine Selection: size/engine-selection.md
+      - Optimize: size/optimize.md
   - HULL:
       - Import: hull/import.md
       - Fairing: hull/fairing.md
@@ -99,12 +99,12 @@ nav:
   - COMPART:
       - Overview: compart/index.md
       - Import: compart/import.md
-      - Modeling: compart/modeling.md
-      - Hydro: compart/hydro.md
-      - Volume: compart/volume.md
-      - Loading: compart/loading.md
-      - Damage: compart/damage.md
-      - Stability: compart/stability.md
+      - Hydrostatics: compart/hydro.md
+      - Compartment Modeling: compart/modeling.md
+      - Cargo Definitions: compart/volume.md
+      - Loading Conditions: compart/loading.md
+      - Damage Conditions: compart/damage.md
+      - Stability Evaluation: compart/stability.md
       - Export: compart/export.md
   - Command Line: cli.md
   - FAQ: faq.md

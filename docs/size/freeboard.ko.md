@@ -1,6 +1,6 @@
 # Freeboard
 
-![Freeboard 탭](../assets/screenshots/dimension-freeboard.png)
+![Freeboard 탭](../assets/screenshots/size-freeboard.png)
 
 **ICLL(International Convention on Load Lines) 1966, Type A** 규정에 따른 법정 최소 건현을 계산합니다. Type A는 구획성능이 우수하고 갑판 개구부가 작은 탱커 등 액체화물선에 적용되는 규정입니다. 이와 함께 요구되는 summer draft가 이 건현 안에서 실제로 확보 가능한지를 검토합니다.
 

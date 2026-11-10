@@ -10,7 +10,7 @@ none of them require the others to have been used first):
 
 | Tab | What it's for |
 |---|---|
-| [**DIMENSION**](dimension/index.md) | Size a new design from owner's requirements and a parent ship: principal dimensions, freeboard, resistance/propeller, engine selection, and automatic optimization. |
+| [**SIZE**](size/index.md) | Size a new design from owner's requirements and a parent ship: principal dimensions, freeboard, resistance/propeller, engine selection, and automatic optimization. |
 | **HULL** | Import an STL hull surface, scale/orient it, generate its lines plan, reshape it with [Variation](hull/variation.md) and [Fairing](hull/fairing.md), and [export](hull/export.md) STL/DXF. |
 | **COMPART** | Build internal compartments/tanks inside an imported hull and run hydrostatics, tank capacity, loading, damage, and stability calculations — see the [COMPART overview](compart/index.md). |
 

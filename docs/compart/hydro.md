@@ -1,4 +1,4 @@
-# Hydro
+# Hydrostatics
 
 Computes a grid of hydrostatic particulars — displacement, centers of buoyancy/flotation,
 metacentric heights, form coefficients, and more — over a sweep of draft/trim/heel. This is
@@ -12,13 +12,17 @@ there and re-import.
 
 ## Setting up the sweep
 
+- **Seawater density (ton/m³)** — the density that turns the displaced volume into
+  Displacement, TPC and MTC (default 1.025). It sits above Shell plate thickness, is saved with
+  the project, and is also used by [Stability Evaluation](stability.md); it used to be set
+  on that tab.
 - **Shell plate thickness (mm)** — an optional plating allowance added to the modeled
   (moulded) hull surface. It only affects the **Extreme** fields (below): Volume/Displacement
   Extreme = the moulded value plus wetted surface area × this thickness, approximating the
   hull's outside-of-plating envelope without actually re-meshing it. Leave it at 0 to treat
   the modeled surface as the outer shell.
 - **Draft**, **Trim**, **Heel** — each a **Start / Step / End** range (Draft and Trim in m,
-  Heel in degrees; + heel = starboard down, matching [Stability](stability.md)'s GZ curve).
+  Heel in degrees; + heel = starboard down, matching [Stability Evaluation](stability.md)'s GZ curve).
   Trim and Heel default to 0/0/0 (upright, even keel) if you only care about draft.
 - **Hydrostatic Values** — a checkbox grid of every available field, all checked by default:
   Volume (moulded and extreme), Displacement (moulded and extreme), LCB (overall, fore body,
@@ -28,11 +32,11 @@ there and re-import.
   A<sub>WP</sub>, A<sub>M</sub>, C<sub>B</sub>/C<sub>P</sub>/C<sub>M</sub>/C<sub>WP</sub>/C<sub>VP</sub>,
   and Trim.
 
-![Hydro tab, sweep set up](../assets/screenshots/compart-hydro-form.png)
+![Hydrostatics tab, sweep set up](../assets/screenshots/compart-hydro-form.png)
 
 Click **Calculate**.
 
-![Hydro tab after calculating](../assets/screenshots/compart-hydro-calculated.png)
+![Hydrostatics tab after calculating](../assets/screenshots/compart-hydro-calculated.png)
 
 ## Viewing results
 

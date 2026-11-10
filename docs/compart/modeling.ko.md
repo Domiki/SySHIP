@@ -1,6 +1,6 @@
-# Modeling
+# Compartment Modeling
 
-Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 만들고, 결합하고, 자르고, 변형시켜 솔리드로 다룹니다. 내부적으로 **Create**, **Operation**, **Script** 세 개의 탭으로 나뉩니다.
+Compartment Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 만들고, 결합하고, 자르고, 변형시켜 솔리드로 다룹니다. 내부적으로 **Create**, **Operation**, **Script** 세 개의 탭으로 나뉩니다.
 
 ## Create
 
@@ -14,7 +14,7 @@ Modeling은 실제로 구획과 탱크를 만드는 곳입니다 — 형상을 �
 | **Cylinder** | Radius (m), Point 1 (x,y,z), Point 2 (x,y,z) | 두 점을 잇는 원기둥입니다. |
 | **Plane** | Axis (X/Y/Z), Position (m) | 선택한 축에 수직인 절단 평면으로, 현재 선체의 범위에 맞춰집니다. |
 | **Skinned surface** | Num points, Axis, 하나 이상의 **폴리라인** | 2개 이상의 폴리라인을 통과하는 곡면을 로프트합니다. 폴리라인은 이 패널 안에서 직접 입력합니다(아래 참고). |
-| **Load** | STL 파일 | 외부 STL 파일을 새로운 구획 형상으로 임포트합니다. |
+| **Load mesh** | STL 파일 | 외부 STL 파일을 새로운 구획 형상으로 임포트합니다. |
 
 **Skinned surface**는 더 이상 별도의 polyline mesh가 필요하지 않습니다: **Num points**(단면마다 몇 개의 2D 점을 가질지)와 단면들이 쌓이는 **Axis**를 설정한 뒤, **+ Add polyline**으로 단면을 추가합니다 — 각 단면은 해당 축 위의 **Position (m)**과 (a, b) 점들의 행을 갖습니다. 어떤 폴리라인의 박스를 클릭하면 그 폴리라인이 활성화되어 실시간 미리보기에 표시됩니다. 프로필들은 위치 순서대로 자동 정렬되어 로프트됩니다. 모든 프로필은 점 개수가 같아야 하며, 각각 서로 다른 위치를 가져야 합니다. 직접 입력하는 대신 Mesh List의 **Lines** 탭에 있는 line 값을 이 숫자 필드(Position, 또는 점의 좌표) 위로 드래그해서 채울 수도 있습니다.
 

@@ -37,7 +37,7 @@ syship app.shutdown
 
 - 명령 이름은 `<단계>.<대상>.<동작>` 형식입니다. 예: `compart.stability.gz`.
 - 파라미터는 `--이름 값`으로 줍니다. 목록은 플래그를 반복하거나(`--meshes A --meshes B`), 숫자는 쉼표로 이어 씁니다(`--translate 0,0,25`).
-- 값은 창과 같은 단위를 씁니다. 길이 m, 무게 t, 각도 도, 밀도 t/m³.
+- 값은 창과 같은 단위를 씁니다. 길이 m, 무게 t, 각도 도, 밀도 ton/m³.
 - 구획은 Mesh List의 이름으로 지정합니다. `*`, `?` 와일드카드를 쓸 수 있습니다. 예: `--meshes "W.B. TK*"`.
 - 파일을 덮어쓰거나 작업을 버리는 명령(다른 프로젝트 열기, 메시 삭제)은 `--yes`가 필요합니다.
 - 대부분의 변경은 `syship compart.history.undo`나 창의 **Undo**로 되돌릴 수 있습니다.
@@ -87,7 +87,7 @@ syship compart.project.load --path ship.zip --yes
 syship compart.category.assign --meshes "*C.O. TK*" --category "Crude oil"
 syship compart.loading.set --meshes "*C.O. TK*" --fillPercent 98
 syship compart.loading.set --meshes "W.B. TK*" --weight 12000
-syship compart.lightship.set --weight 40000 --lcg 150 --tcg 0 --vcg 17
+syship compart.lightweight.set --weight 40000 --lcg 150 --tcg 0 --vcg 17
 syship compart.stability.gz --heelStepDeg 1
 syship compart.stability.evaluate
 syship compart.project.save --path ship_loaded.zip
@@ -135,4 +135,4 @@ else:
 셸 명령을 실행할 수 있는 AI 에이전트는 SySHIP을 스스로 쓸 수 있습니다. `syship list`와 `syship describe`로 명령을 찾고, 실행한 뒤, 조회 명령(`compart.project.summary`, `compart.loading.get`, `compart.stability.last`)이나 `app.screenshot`으로 결과를 확인합니다. 창이 열려 있으면 에이전트가 하는 모든 단계를 볼 수 있습니다.
 
 !!! note "지원 범위"
-    현재 명령줄은 HULL(가져오기, 변형, 내보내기, 프로젝트)과 COMPART(프로젝트, 모델링 명령과 스크립트, 레이어, 카테고리와 구획 계수, 적하, 손상, 복원성)를 지원합니다. COMPART Hydro와 DIMENSION 명령은 이후에 추가됩니다.
+    현재 명령줄은 HULL(가져오기, 변형, 내보내기, 프로젝트)과 COMPART(프로젝트, 모델링 명령과 스크립트, 레이어, 카테고리와 구획 계수, 적하, 손상, 복원성)를 지원합니다. COMPART Hydrostatics와 SIZE 명령은 이후에 추가됩니다.

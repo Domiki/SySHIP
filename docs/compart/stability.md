@@ -1,16 +1,17 @@
-# Stability
+# Stability Evaluation
 
 Finds where the ship floats for the current loading condition and judges its righting-arm
-(**GZ**) curve against stability criteria. With nothing flooded in [Damage](damage.md) this is
+(**GZ**) curve against stability criteria. With nothing flooded in [Damage Conditions](damage.md) this is
 an **intact** case; with compartments flooded it is a **damage** case. The same physics runs
 either way; only the default criteria differ.
 
-Stability uses the [Loading](loading.md) tab's total weight and combined CG. Partly filled
+Stability Evaluation uses the [Loading Conditions](loading.md) tab's total weight and combined CG. Partly filled
 liquid tanks are modeled with their real free surface: at every heel and trim the liquid is
 re-leveled, so the free-surface effect is already in the GZ values.
 
-Set **Seawater density (t/m³)** (default 1.025) at the top of the tab. It applies to both
-sections below.
+The seawater density (default 1.025 ton/m³) is no longer set here: it is the **Seawater
+density (ton/m³)** field on the [Hydrostatics](hydro.md) tab, and applies to both sections
+below.
 
 ## 1. Equilibrium
 
@@ -31,7 +32,7 @@ equilibrium attitude with an opaque sea surface at the equilibrium waterline.
 
 ## 2. GZ Curve
 
-Set the **Heel step (deg)** (default 5°, from 0.25° to 90°) and click **Run GZ Curve**. The
+Set the **Heel step (deg)** (default 5°, from 0.25° to 90°) and click **Evaluate Stability**. The
 heel is swept from -90° (port) to 90° (starboard) with free trim. A smaller step gives a
 more accurate curve but takes longer.
 
@@ -154,7 +155,7 @@ check("Area 0-30°", a >= area_min)
 
 - `GZ` is the GZ curve (heel in degrees, GZ in metres) with the list side positive.
   `GZ_SIGNED` is the raw curve (+ heel = starboard down).
-- Values from the run: `EQ_HEEL` (deg), `GM0` (m), `KG` (m), `DISP` (t), `DRAFT` (waterline
+- Values from the run: `EQ_HEEL` (deg), `GM0` (m), `KG` (m), `DISP` (ton), `DRAFT` (waterline
   z, m), `TRIM` (deg), `DECK_EDGE_IMMERSED`, `DECK_EDGE_ANGLE` (deg), `FLOODED`, `LIST_SIDE`.
   The edit view lists them with their current values.
 - Drawing and measuring: `vline`, `hline`, `point`, `seg`, `line`, `tangent`, `at`, `slope`,
@@ -169,7 +170,7 @@ The seawater density, heel step, conditions and curve fit are saved with the pro
 
 !!! warning "Sanity-check very light loading conditions"
     A loading condition far outside the hull's normal displacement range (for example, a
-    lightship weight with no cargo or ballast) can push the solver into a physically
+    lightweight with no cargo or ballast) can push the solver into a physically
     implausible result or stop it from converging. If the draft looks far too deep or the 3D
-    preview is oddly tilted, check that the [Loading](loading.md) total weight is realistic
+    preview is oddly tilted, check that the [Loading Conditions](loading.md) total weight is realistic
     before trusting the result.

@@ -1,6 +1,6 @@
 # Engine Selection
 
-![Engine Selection 탭](../assets/screenshots/dimension-engine-selection.png)
+![Engine Selection 탭](../assets/screenshots/size-engine-selection.png)
 
 엔진 제작사 카탈로그에 실리는 4-corner 출력/rpm **layout diagram**으로 후보 엔진 카탈로그를 구축(또는 임포트)하고, 설계선의 요구 운항점이 선택한 엔진의 layout diagram 안에 들어오는지 확인한 뒤, 보간된 연료소비율을 확인합니다.
 

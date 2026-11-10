@@ -1,6 +1,6 @@
-# DIMENSION
+# SIZE
 
-DIMENSION is where a new ship design starts: you describe the owner's requirements and a
+SIZE is where a new ship design starts: you describe the owner's requirements and a
 comparable "parent ship," and SySHIP solves for the new ship's principal dimensions,
 checks freeboard, predicts resistance and propulsion, selects an engine, and can
 automatically search for the best dimension ratios.
@@ -16,12 +16,12 @@ The tab has six sub-tabs, meant to be worked roughly top to bottom:
 | [Engine Selection](engine-selection.md) | Build an engine catalog and check the design's operating point against an engine's layout diagram. |
 | [Optimize](optimize.md) | Automatically search the free dimension ratios for the best building cost / powering trade-off. |
 
-Nothing else in SySHIP requires DIMENSION — you can go straight to importing an STL hull in
-the HULL tab. But wherever DIMENSION *has* produced a design ship, HULL's Variation panels
+Nothing else in SySHIP requires SIZE — you can go straight to importing an STL hull in
+the HULL tab. But wherever SIZE *has* produced a design ship, HULL's Variation panels
 and COMPART's Loading tab offer one-click buttons to reuse its recommended dimensions and
-lightship weight.
+lightweight weight.
 
 !!! note
-    DIMENSION's values are entered and displayed directly in their labeled unit (m, m³,
+    SIZE's values are entered and displayed directly in their labeled unit (m, m³,
     ton, kW, rpm, knots, ...) — there's no separate unit-conversion step like HULL's
     millimeter-internal geometry.

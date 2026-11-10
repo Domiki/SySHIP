@@ -1,6 +1,6 @@
 # Resistance & Propeller
 
-![Resistance & Propeller tab](../assets/screenshots/dimension-resistance-propeller.png)
+![Resistance & Propeller tab](../assets/screenshots/size-resistance-propeller.png)
 
 Predicts calm-water resistance and effective power with the **Holtrop & Mennen (1984)**
 method, then designs a matching propeller using **Wageningen B-series** open-water

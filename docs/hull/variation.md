@@ -8,7 +8,7 @@ a new target dimension or coefficient, while keeping the hull's overall characte
 
 Every Variation panel that changes a global dimension shows its **current** value read from
 the hull alongside a **target** value you type in, and a bold **Change &lt;X&gt;** title.
-Where a DIMENSION tab design ship exists, a **"Reset to DIMENSION recommendation"** button
+Where a SIZE tab design ship exists, a **"Reset to SIZE recommendation"** button
 appears so you can adopt that value with one click. Any numeric field here (a custom
 reference position, an FFD corner target, a protection-box bound) also accepts a line dragged
 from the **Lines** tab of the right-hand panel — drop it to fill the field with that line's
@@ -41,7 +41,7 @@ current position instead of typing it.
 Uses a Lackenby-style transformation to shift the prismatic curve so the hull reaches a
 target block coefficient (\(C_B\)) and/or longitudinal center of buoyancy (\(LCB\)):
 
-- **Current C<sub>B</sub>** vs. **Target C<sub>B</sub>** (a **Reset to DIMENSION
+- **Current C<sub>B</sub>** vs. **Target C<sub>B</sub>** (a **Reset to SIZE
   recommendation** button appears if available).
 - **Current LCB from midship (m)** vs. **Target LCB from midship (m)**.
 - **Start X (m)** / **End X (m)** — the *active zone*: the X range (measured from AP) over

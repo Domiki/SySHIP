@@ -1,6 +1,6 @@
 # Resistance & Propeller
 
-![Resistance & Propeller 탭](../assets/screenshots/dimension-resistance-propeller.png)
+![Resistance & Propeller 탭](../assets/screenshots/size-resistance-propeller.png)
 
 **Holtrop & Mennen(1984)** 법으로 정수 중 저항과 유효마력을 예측하고, **Wageningen B-계열** 단독성능 K<sub>T</sub>/K<sub>Q</sub> 회귀식을 이용해 이에 맞는 프로펠러를 설계합니다.
 

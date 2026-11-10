@@ -1,10 +1,10 @@
-# Stability
+# Stability Evaluation
 
-현재 적하 상태에서 배가 어떤 자세로 뜨는지 구하고, 복원정(**GZ**) 곡선을 복원성 기준으로 판정합니다. [Damage](damage.md)에서 침수 구획이 없으면 **비손상(intact)** 케이스, 있으면 **손상(damage)** 케이스입니다. 계산 방식은 같고 기본 판정 기준만 다릅니다.
+현재 적하 상태에서 배가 어떤 자세로 뜨는지 구하고, 복원정(**GZ**) 곡선을 복원성 기준으로 판정합니다. [Damage Conditions](damage.md)에서 침수 구획이 없으면 **비손상(intact)** 케이스, 있으면 **손상(damage)** 케이스입니다. 계산 방식은 같고 기본 판정 기준만 다릅니다.
 
-Stability는 [Loading](loading.md) 탭의 총중량과 결합 무게중심을 그대로 사용합니다. 부분 적재된 액체 탱크는 실제 자유수면으로 계산합니다. heel과 trim이 바뀔 때마다 액면을 다시 맞추므로, 자유수면 효과가 GZ 값에 이미 반영되어 있습니다.
+Stability Evaluation은 [Loading Conditions](loading.md) 탭의 총중량과 결합 무게중심을 그대로 사용합니다. 부분 적재된 액체 탱크는 실제 자유수면으로 계산합니다. heel과 trim이 바뀔 때마다 액면을 다시 맞추므로, 자유수면 효과가 GZ 값에 이미 반영되어 있습니다.
 
-탭 맨 위의 **Seawater density (t/m³)**(기본값 1.025)는 아래 두 섹션에 모두 적용됩니다.
+해수 밀도(기본값 1.025 ton/m³)는 이 탭이 아니라 [Hydrostatics](hydro.md) 탭의 **Seawater density (ton/m³)** 필드에서 설정하며, 아래 두 섹션에 모두 적용됩니다.
 
 ## 1. Equilibrium
 
@@ -22,7 +22,7 @@ Stability는 [Loading](loading.md) 탭의 총중량과 결합 무게중심을 �
 
 ## 2. GZ Curve
 
-**Heel step (deg)**(기본값 5°, 0.25°~90°)을 정하고 **Run GZ Curve**를 누르면, trim을 자유롭게 두고 heel을 -90°(port)부터 90°(starboard)까지 계산합니다. 간격이 작을수록 곡선이 정확해지지만 시간이 더 걸립니다.
+**Heel step (deg)**(기본값 5°, 0.25°~90°)을 정하고 **Evaluate Stability**를 누르면, trim을 자유롭게 두고 heel을 -90°(port)부터 90°(starboard)까지 계산합니다. 간격이 작을수록 곡선이 정확해지지만 시간이 더 걸립니다.
 
 **View Details**를 누르면 **Stability criteria** 창이 열립니다.
 
@@ -114,7 +114,7 @@ check("Area 0-30°", a >= area_min)
 ```
 
 - `GZ`는 기울어지는 쪽을 +로 둔 GZ 곡선(heel은 도, GZ는 m)입니다. `GZ_SIGNED`는 원본 곡선(+ heel = starboard 쪽으로 기울어짐)입니다.
-- 계산 결과로 주어지는 값: `EQ_HEEL`(도), `GM0`(m), `KG`(m), `DISP`(t), `DRAFT`(수면 높이, m), `TRIM`(도), `DECK_EDGE_IMMERSED`, `DECK_EDGE_ANGLE`(도), `FLOODED`, `LIST_SIDE`. 편집 화면에 현재 값과 함께 표시됩니다.
+- 계산 결과로 주어지는 값: `EQ_HEEL`(도), `GM0`(m), `KG`(m), `DISP`(ton), `DRAFT`(수면 높이, m), `TRIM`(도), `DECK_EDGE_IMMERSED`, `DECK_EDGE_ANGLE`(도), `FLOODED`, `LIST_SIDE`. 편집 화면에 현재 값과 함께 표시됩니다.
 - 작도와 측정: `vline`, `hline`, `point`, `seg`, `line`, `tangent`, `at`, `slope`, `intersect`(교점이 정확히 1개여야 함), `root`(처음 0 아래로 내려가는 각), `peak`, `area`(m·rad), `x`, `y`
 - 보조 함수: `min`, `max`, `abs`, `deg2rad`, `rad2deg`, `ifna(값, 대체값)`, `ifelse(조건, 참, 거짓)`, 비교 연산과 `and` / `or` / `not`
 - `check("이름", 비교식)`은 실제 값과 기준값을 함께 판정 결과로 기록합니다.
@@ -123,4 +123,4 @@ check("Area 0-30°", a >= area_min)
 해수 밀도, Heel step, 조건, Curve fit 설정은 프로젝트에 함께 저장됩니다. [명령줄](../cli.md)에서도 바꿀 수 있습니다.
 
 !!! warning "지나치게 가벼운 적하 상태는 결과를 검산하세요"
-    선체의 정상적인 배수량 범위를 크게 벗어나는 적하 상태(예: 화물이나 밸러스트 없이 경하중량만 있는 상태)에서는 solver가 물리적으로 비현실적인 결과를 내거나 수렴하지 못할 수 있습니다. 흘수가 지나치게 깊거나 3D 미리보기가 이상하게 기울어 보이면, 결과를 믿기 전에 [Loading](loading.md)의 총중량이 그 선체에 현실적인 값인지 먼저 확인하세요.
+    선체의 정상적인 배수량 범위를 크게 벗어나는 적하 상태(예: 화물이나 밸러스트 없이 경하중량만 있는 상태)에서는 solver가 물리적으로 비현실적인 결과를 내거나 수렴하지 못할 수 있습니다. 흘수가 지나치게 깊거나 3D 미리보기가 이상하게 기울어 보이면, 결과를 믿기 전에 [Loading Conditions](loading.md)의 총중량이 그 선체에 현실적인 값인지 먼저 확인하세요.

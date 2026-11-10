@@ -1,6 +1,6 @@
 # Optimize
 
-![Optimize tab](../assets/screenshots/dimension-optimize.png)
+![Optimize tab](../assets/screenshots/size-optimize.png)
 
 Automatically searches the two free dimension ratios — L/B and either C<sub>B</sub>
 (deadweight carriers) or B/D (volume carriers) — for the combination that best satisfies a

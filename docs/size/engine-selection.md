@@ -1,6 +1,6 @@
 # Engine Selection
 
-![Engine Selection tab](../assets/screenshots/dimension-engine-selection.png)
+![Engine Selection tab](../assets/screenshots/size-engine-selection.png)
 
 Build (or import) a catalog of candidate main engines — each defined by the 4-corner power/rpm
 **layout diagram** printed in engine maker literature — then check whether the design's

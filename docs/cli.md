@@ -40,7 +40,7 @@ Adding `--start` to any command starts a background instance automatically when 
 
 - Commands are named `<stage>.<target>.<action>`, for example `compart.stability.gz`.
 - Parameters are given as `--name value`. Lists can repeat the flag (`--meshes A --meshes B`) or use commas for numbers (`--translate 0,0,25`).
-- Values use the same units as the window: lengths in m, weights in t, angles in degrees, density in t/m³.
+- Values use the same units as the window: lengths in m, weights in t, angles in degrees, density in ton/m³.
 - Compartments are named as in the Mesh List. A name can use `*` and `?` as wildcards, for example `--meshes "W.B. TK*"`.
 - Commands that overwrite a file or discard work (opening another project, deleting meshes) ask for `--yes`.
 - Most changes can be undone with `syship compart.history.undo`, or with **Undo** in the window.
@@ -90,7 +90,7 @@ syship compart.project.load --path ship.zip --yes
 syship compart.category.assign --meshes "*C.O. TK*" --category "Crude oil"
 syship compart.loading.set --meshes "*C.O. TK*" --fillPercent 98
 syship compart.loading.set --meshes "W.B. TK*" --weight 12000
-syship compart.lightship.set --weight 40000 --lcg 150 --tcg 0 --vcg 17
+syship compart.lightweight.set --weight 40000 --lcg 150 --tcg 0 --vcg 17
 syship compart.stability.gz --heelStepDeg 1
 syship compart.stability.evaluate
 syship compart.project.save --path ship_loaded.zip
@@ -138,4 +138,4 @@ These need the SySHIP window: `app.screenshot --path view.png`, `app.stage.open`
 An AI agent that can run shell commands can use SySHIP on its own: it finds commands with `syship list` and `syship describe`, runs them, and checks the result with read commands (`compart.project.summary`, `compart.loading.get`, `compart.stability.last`) or with `app.screenshot`. With the window open you see every step the agent takes.
 
 !!! note "Coverage"
-    The command line currently covers HULL (import, variations, export, projects) and COMPART (projects, modeling commands and scripts, layers, categories and compartment factors, loading, damage and stability). COMPART Hydro and DIMENSION commands will follow.
+    The command line currently covers HULL (import, variations, export, projects) and COMPART (projects, modeling commands and scripts, layers, categories and compartment factors, loading, damage and stability). COMPART Hydrostatics and SIZE commands will follow.

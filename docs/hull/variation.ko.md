@@ -4,7 +4,7 @@ Variation은 (Fairing의 국부적인 정점/면 편집과 달리) 선체 *전�
 
 ![Protection이 펼쳐진 Length Variation 패널](../assets/screenshots/hull-variation-protection.png)
 
-전역 제원을 바꾸는 모든 Variation 패널은 선체에서 읽어온 **현재(current)** 값과 직접 입력하는 **목표(target)** 값을 함께 보여주며, 굵은 글씨의 **Change &lt;X&gt;** 제목이 붙습니다. DIMENSION 탭에서 설계선이 산출되어 있으면 한 번의 클릭으로 그 값을 가져오는 **"Reset to DIMENSION recommendation"** 버튼도 나타납니다. 여기 있는 숫자 필드(커스텀 기준 위치, FFD 모서리 목표값, protection box 경계 등)는 오른쪽 패널 **Lines** 탭의 line을 드래그해서 놓으면 직접 입력하지 않고도 그 line의 현재 위치 값으로 채울 수 있습니다.
+전역 제원을 바꾸는 모든 Variation 패널은 선체에서 읽어온 **현재(current)** 값과 직접 입력하는 **목표(target)** 값을 함께 보여주며, 굵은 글씨의 **Change &lt;X&gt;** 제목이 붙습니다. SIZE 탭에서 설계선이 산출되어 있으면 한 번의 클릭으로 그 값을 가져오는 **"Reset to SIZE recommendation"** 버튼도 나타납니다. 여기 있는 숫자 필드(커스텀 기준 위치, FFD 모서리 목표값, protection box 경계 등)는 오른쪽 패널 **Lines** 탭의 line을 드래그해서 놓으면 직접 입력하지 않고도 그 line의 현재 위치 값으로 채울 수 있습니다.
 
 ## Change Length
 
@@ -29,7 +29,7 @@ Variation은 (Fairing의 국부적인 정점/면 편집과 달리) 선체 *전�
 
 Lackenby 방식의 변환을 이용해 프리즈매틱 곡선을 이동시켜, 선체가 목표 방형계수(\(C_B\))와/또는 부심종방향위치(\(LCB\))에 도달하도록 만듭니다:
 
-- **Current C<sub>B</sub>** vs. **Target C<sub>B</sub>**(가능하면 **Reset to DIMENSION recommendation** 버튼도 표시됩니다).
+- **Current C<sub>B</sub>** vs. **Target C<sub>B</sub>**(가능하면 **Reset to SIZE recommendation** 버튼도 표시됩니다).
 - **Current LCB from midship (m)** vs. **Target LCB from midship (m)**.
 - **Start X (m)** / **End X (m)** — *active zone*: 변환이 선체 형상을 바꿀 수 있도록 허용되는 X 범위(AP 기준)입니다. 이 구간 밖의 선체는 그대로 유지됩니다.
 - **Smoothing range (m)** — active zone 경계에서 변환되지 않은 영역으로 급격하게 끊기지 않고 부드럽게 이어지도록 블렌딩합니다.
