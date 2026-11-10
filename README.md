@@ -70,7 +70,7 @@ Grab the latest installer from the **[Releases](https://github.com/Domiki/SySHIP
 | Platform | File |
 |---|---|
 | Windows | `SySHIP-<version>-Windows.exe` |
-| macOS | `SySHIP-<version>.dmg` |
+| macOS | `SySHIP-<version>-MacOS.dmg` |
 
 The app is not yet code-signed (Windows) or notarized (macOS), so the first launch may show a security warning. The [FAQ](https://syship.readthedocs.io/en/latest/faq/) has the one-time fix for each system.
 
@@ -116,6 +116,3 @@ SySHIP is proprietary software. It is distributed free of charge in binary form 
 
 Copyright &copy; Seoul National University, SyDLab.
 
----
-
-<sub>This repository hosts the public distribution, documentation, and update-check metadata (`latest.json`) for SySHIP. `latest.json` is read by the app on startup and is updated automatically by [`update-latest-json.yml`](update-latest-json.yml) whenever a GitHub Release is published.</sub>
