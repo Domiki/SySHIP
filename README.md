@@ -9,10 +9,10 @@
 [![Status](https://img.shields.io/badge/status-active%20development-f59e0b?style=flat-square)](https://github.com/Domiki/SySHIP/releases)
 [![Release](https://img.shields.io/github/v/release/Domiki/SySHIP?style=flat-square&label=release&color=2563eb)](https://github.com/Domiki/SySHIP/releases/latest)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-475569?style=flat-square)](#download)
-[![Docs](https://img.shields.io/readthedocs/syship?style=flat-square&label=docs&logo=readthedocs&logoColor=white)](https://syship.readthedocs.io)
+[![Manual](https://img.shields.io/badge/manual-Notion-0f172a?style=flat-square&logo=notion&logoColor=white)](https://hissing-breeze-af7.notion.site/SySHIP-Documentation-416d64a418ff81198d0bf27cfad776da)
 [![License](https://img.shields.io/badge/license-educational%20use%20only-64748b?style=flat-square)](#license)
 
-[Download](#download) · [Quick start](#quick-start) · [Documentation](https://syship.readthedocs.io) · [Report an issue](https://github.com/Domiki/SySHIP/issues)
+[Download](#download) · [Quick start](#quick-start) · [Manual](https://hissing-breeze-af7.notion.site/SySHIP-Documentation-416d64a418ff81198d0bf27cfad776da) · [Report an issue](https://github.com/Domiki/SySHIP/issues)
 
 <br />
 
@@ -72,11 +72,11 @@ Grab the latest installer from the **[Releases](https://github.com/Domiki/SySHIP
 | Windows | `SySHIP-<version>-Windows.exe` |
 | macOS | `SySHIP-<version>-MacOS.dmg` |
 
-The app is not yet code-signed (Windows) or notarized (macOS), so the first launch may show a security warning. The [FAQ](https://syship.readthedocs.io/en/latest/faq/) has the one-time fix for each system.
+The app is not yet code-signed (Windows) or notarized (macOS), so the first launch may show a security warning. The [manual](https://hissing-breeze-af7.notion.site/SySHIP-Documentation-416d64a418ff81198d0bf27cfad776da) has the one-time fix for each system.
 
 ## Quick start
 
-1. **Install** SySHIP and launch it. See [Installation](https://syship.readthedocs.io/en/latest/installation/) for per-platform steps.
+1. **Install** SySHIP and launch it. See the [Installation](https://hissing-breeze-af7.notion.site/SySHIP-Documentation-416d64a418ff81198d0bf27cfad776da) page of the manual for per-platform steps.
 2. Open the **HULL** stage and **Import** one of the bundled sample hulls (`kvlcc.stl`, `kvlcc2.stl`, or `kcs.stl`). The file browser opens to the samples folder.
 3. Follow the Import steps to set scale, AP / FP, and generate the lines. The body plan, water plan, sheer plan, and 3D view update live.
 4. Switch to **COMPART**, start a new project from the hull, model a few tanks, assign cargo categories, and run **Hydrostatics**, **Loading Conditions**, and **Stability Evaluation**.
@@ -92,23 +92,17 @@ syship app.shutdown
 
 ## Documentation
 
-Full documentation: **[syship.readthedocs.io](https://syship.readthedocs.io)** (English and 한국어)
+The SySHIP manual is on Notion:
 
-| | |
-|---|---|
-| [Installation](https://syship.readthedocs.io/en/latest/installation/) | Install on Windows and macOS |
-| [SIZE](https://syship.readthedocs.io/en/latest/size/) | Concept sizing from requirements |
-| [HULL](https://syship.readthedocs.io/en/latest/hull/import/) | Import, variation, fairing, export |
-| [COMPART](https://syship.readthedocs.io/en/latest/compart/) | Compartments, loading, damage, stability |
-| [Command Line](https://syship.readthedocs.io/en/latest/cli/) | Automate SySHIP with `syship` |
-| [FAQ](https://syship.readthedocs.io/en/latest/faq/) | Troubleshooting |
+- **[English manual](https://hissing-breeze-af7.notion.site/SySHIP-Documentation-416d64a418ff81198d0bf27cfad776da)**
+- **[한국어 매뉴얼](https://hissing-breeze-af7.notion.site/SySHIP-416d64a418ff81e292f3ecdb0455418b)**
 
 ## Contributing
 
 SySHIP's source code is not public, so this repository does not accept code contributions. You can still help:
 
 - **Bug reports and feature requests**: open an [issue](https://github.com/Domiki/SySHIP/issues). Include your SySHIP version, operating system, and, when possible, the steps (and a sample file) to reproduce the problem.
-- **Documentation fixes**: every documentation page has an edit link; pull requests against the files in [`docs/`](docs/) are welcome.
+- **Manual corrections**: the manual is on Notion, so report problems as an [issue](https://github.com/Domiki/SySHIP/issues).
 
 ## License
 

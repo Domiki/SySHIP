@@ -1,8 +1,7 @@
-site_name: SySHIP Documentation
+site_name: SySHIP
 site_url: https://syship.readthedocs.io/en/latest/
 repo_url: https://github.com/Domiki/SySHIP
 repo_name: Domiki/SySHIP
-edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -20,91 +19,15 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
-    - navigation.tabs
-    - navigation.sections
     - content.code.copy
-    - content.action.edit
 
 extra_css:
   - stylesheets/extra.css
 
 markdown_extensions:
-  - admonition
   - attr_list
   - md_in_html
   - tables
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.arithmatex:
-      generic: true
-
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-
-plugins:
-  - search
-  - i18n:
-      docs_structure: suffix
-      languages:
-        - locale: en
-          default: true
-          name: English
-          build: true
-        - locale: ko
-          name: 한국어
-          build: true
-          nav_translations:
-            Home: 홈
-            Command Line: 명령줄
-            Installation: 설치
-            SIZE: SIZE
-            Overview: 개요
-            Requirements: 요구사항
-            Principal Dimensions: 주요 제원
-            Freeboard: 건현
-            Resistance & Propeller: 저항 및 추진기
-            Engine Selection: 엔진 선정
-            Optimize: 최적화
-            HULL: HULL
-            Import: 임포트
-            Fairing: 페어링
-            Variation: 배리에이션
-            Export: 내보내기
-            COMPART: COMPART
-            Hydrostatics: 정수력학
-            Compartment Modeling: 구획 모델링
-            Cargo Definitions: 화물 정의
-            Loading Conditions: 적하 조건
-            Damage Conditions: 손상 조건
-            Stability Evaluation: 복원성 평가
-            FAQ: 자주 묻는 질문
 
 nav:
   - Home: index.md
-  - Installation: installation.md
-  - SIZE:
-      - Overview: size/index.md
-      - Requirements: size/requirements.md
-      - Principal Dimensions: size/principal-dimensions.md
-      - Freeboard: size/freeboard.md
-      - Resistance & Propeller: size/resistance-propeller.md
-      - Engine Selection: size/engine-selection.md
-      - Optimize: size/optimize.md
-  - HULL:
-      - Import: hull/import.md
-      - Fairing: hull/fairing.md
-      - Variation: hull/variation.md
-      - Export: hull/export.md
-  - COMPART:
-      - Overview: compart/index.md
-      - Import: compart/import.md
-      - Hydrostatics: compart/hydro.md
-      - Compartment Modeling: compart/modeling.md
-      - Cargo Definitions: compart/volume.md
-      - Loading Conditions: compart/loading.md
-      - Damage Conditions: compart/damage.md
-      - Stability Evaluation: compart/stability.md
-      - Export: compart/export.md
-  - Command Line: cli.md
-  - FAQ: faq.md

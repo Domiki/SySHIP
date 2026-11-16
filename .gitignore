@@ -4,3 +4,4 @@
 *.AppImage
 .docs_venv/
 site/
+.env
