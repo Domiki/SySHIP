@@ -5,3 +5,4 @@
 .docs_venv/
 site/
 .env
+notion-snapshots/

@@ -54,8 +54,8 @@ The app is organized into three stages that you can work through in order (or en
 **COMPART: compartments and stability**
 - Compartment modeling with boxes, cylinders, planes, lofted surfaces, boolean operations, and batch scripts
 - Hydrostatics over a draft / trim / heel sweep, with a shell-thickness allowance
-- Cargo definitions (category, reduction, filling, permeability) and loading conditions with lightweight, deadweight, and displacement summary
-- Damage conditions and stability evaluation with a rule library you can edit, covering IMO, MARPOL, and ICLL criteria
+- Cargo definitions (category, reduction, permeability) and loading cases with lightweight, deadweight, and displacement summary
+- Damage cases and batch stability evaluation of many cases at once, with a rule library you can edit, covering IMO, MARPOL, and ICLL criteria
 - Merged STL export of the modeled compartments
 
 **Automation**
